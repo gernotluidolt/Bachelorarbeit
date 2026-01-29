@@ -1,0 +1,142 @@
+%% dibse.sty
+%%
+%% Author: Pascal Schoettle <pascal.schoettle@mci.edu>
+%% Thanks to Daniel Mur-Spiegl 
+%% ------------------------------------------
+
+%
+%% Package Information
+%% ------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dibse}
+
+
+%
+%% Fundamental packages
+%% ------------------------------------------
+
+\RequirePackage{xifthen}
+
+
+%
+%% Handling options
+%% ------------------------------------------
+
+\newcommand{\babellanguage}{english}
+\newboolean{titlepage}
+\setboolean{titlepage}{false}
+
+\DeclareOption{english}{\renewcommand{\babellanguage}{main=english, ngerman}}
+\DeclareOption{german}{\renewcommand{\babellanguage}{main=ngerman, english}}
+\DeclareOption{titlepage}{\setboolean{titlepage}{true}}
+\DeclareOption*{
+    \ClassWarning{dibsearticle}{Unknown style option '\CurrentOption'.}
+}
+\ProcessOptions*
+
+
+%
+%% Basic packages
+%% ------------------------------------------
+\RequirePackage{cmap}               % searchable and copyable PDF files
+\RequirePackage{graphicx}           % Graphics
+
+\usepackage[utf8]{inputenc}         % utf8 chars
+\usepackage[\babellanguage]{babel}  % language
+\usepackage[T1]{fontenc}            % german Umlaute
+
+
+
+
+
+
+%
+%% Page Layout
+%% ------------------------------------------
+\usepackage[left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,head=21.75pt]{geometry}
+
+%% Font
+\usepackage{times}                      % set font to Times
+\usepackage{parskip}                    % margin after paragraphes
+\renewcommand{\baselinestretch}{1.5}    % 1.5 line spacing
+\usepackage[letterspace=130]{microtype} % Letter spacing for title
+
+
+
+%
+%% Basic commands
+%% ------------------------------------------
+\let\oldauthor\author
+\renewcommand{\author}[1]{
+    \oldauthor{#1}
+    \newcommand{\theauthor}{#1}    
+}
+
+\let\oldtitle\title
+\renewcommand{\title}[1]{
+    \oldtitle{#1}
+    \newcommand{\thetitle}{#1}    
+}
+
+\let\olddate\date
+\renewcommand{\date}[1]{
+    \olddate{#1}
+    \newcommand{\thedate}{#1}    
+}
+
+
+%
+%% Titlepage
+%% ------------------------------------------
+\newcommand{\maketitlepage}{
+    \input{titlepage}
+}
+
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{
+    \ifthenelse{\not \boolean{titlepage}}{\oldmaketitle}{
+        \maketitlepage
+    }
+}
+
+
+
+
+%%
+
+\usepackage{scrlayer-scrpage}
+\usepackage{scrextend}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\automark[subsection]{section}
+
+\ohead{\headmark}
+\ohead{}
+\cfoot{\pagemark}
+
+
+% Addional packages
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+\usetikzlibrary{matrix, positioning}
+
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{titletoc}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{lipsum}
+\usepackage[acronym]{glossaries}
+\usepackage{iflang}

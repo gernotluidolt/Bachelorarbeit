@@ -1,0 +1,20 @@
+% !TEX root = Thesis.tex
+\pagenumbering{arabic}
+\renewcommand*{\thepage}{A\arabic{page}}
+
+\appendix
+\thispagestyle{empty}
+\startcontents[sections]
+\section*{\kwappendix}
+\section*{\kwtoc}
+\printcontents[sections]{l}{1}{\setcounter{tocdepth}{2}}
+\newpage
+\thispagestyle{scrheadings}
+
+\setcounter{page}{1}
+\section{Das ist eine Section im Anhang}
+\lipsum[15] \cite{snyder2017tyranny}.
+
+\section{Das ist noch eine Section im Anhang}
+
+\lipsum[7]~\cite{adams1995hitchhiker}

@@ -1,0 +1,93 @@
+\documentclass[
+    titlepage, % option to specify that you want a titlepage
+    english		% option to choose the document's language [only german and english is implemented so far]
+]{dibsethesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Preliminaries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Uncomment the following line for your Disposition only (either english or german)
+%\renewcommand{\thethesistype}{Disposition}
+
+% Author
+\author{A.~U. Thor}
+
+% Title
+\title{Das ist der Titel meiner in \LaTeX~geschriebenen \thethesistype}
+
+
+% Advisor
+\advisor{FH-Prof. Dr. Max C. Who}
+
+% Research method
+\method{Just Science}
+
+% Student number
+\studentNumber{1710492031  }
+
+% Jahrgang (default: this year)
+\academicYear{2018}
+
+% Date (default: \today)
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Documnet%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%
+%% Title or Titlepage
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\input{abstract.tex}
+\thispagestyle{empty}
+\newpage
+
+
+\pagenumbering{Roman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section*{\kwtoc}
+\startcontents[sections]
+\printcontents[sections]{l}{1}{\setcounter{tocdepth}{3}}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Table of figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%  List of tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\listoftables
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%\printglossary
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Main Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{main.tex}
+\clearpage
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The next two lines define the bibliography style to be used, and the bibliography file.
+\bibliographystyle{IEEEtran} 
+\bibliography{references}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Affidavit %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\makeaffidavit
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\appendix
+\input{appendix.tex}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
