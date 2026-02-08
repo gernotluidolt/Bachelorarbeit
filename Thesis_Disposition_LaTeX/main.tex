@@ -1,22 +1,92 @@
 % !TEX root = Thesis.tex
 
-\section{Einleitung \& Motivation}
+\section{Einleitung: Relevanz der Arbeit}
 \label{sec:intro}
 
+Building Information Modeling (BIM) hat sich als Standard für die digitale Erfassung von Bauwerksdaten etabliert. Während des gesamten Lebenszyklus eines Gebäudes werden Daten in digitalen Modellen gesammelt und ausgetauscht. Hierbei spielt der offene Standard IFC (Industry Foundation Classes) eine zentrale Rolle für die Interoperabilität zwischen verschiedenen Softwarelösungen \cite{bSIFC}.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{adams1995hitchhiker}.
+In der Praxis zeigt sich jedoch eine Diskrepanz zwischen den verfügbaren Planungsmodellen und den Anforderungen nachgelagerter Prozesse. Insbesondere in der Angebotsphase stehen Bauunternehmen vor der Herausforderung, dass IFC-Modelle aus der Planung oft nicht die notwendige Struktur oder Vollständigkeit für eine präzise Mengenermittlung aufweisen \cite{Nawab2024}. Um diese Lücke zu schließen, kommt zunehmend die Information Delivery Specification (IDS) zum Einsatz. IDS ist ein Beschreibungsformat für Anforderungen an ein IFC-Modell, das bisher vorrangig zur automatisierten Modellprüfung (Validierung) genutzt wird \cite{bSIDS}.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{snyder2017tyranny}.
+Das Ziel dieser Arbeit ist es, das Potenzial von IDS über die reine Validierung hinaus zu erweitern. Es soll aufgezeigt werden, wie IDS als Basis für eine gezielte Datenanreicherung genutzt werden kann, um Fachanwender:innen in der Angebotsphase zu unterstützen. Damit adressiert die Arbeit die wirtschaftliche Notwendigkeit, den hohen manuellen Nachbearbeitungsaufwand von Modellen in einer Phase zu reduzieren, in der noch kein fester Auftrag vorliegt \cite{deMarco2024}.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{adams1995hitchhiker}.
+\section{Problemstellung und Forschungsfrage}
+\label{sec:problem}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{snyder2017tyranny}.
+\subsection{Problemstellung}
+Bauunternehmen erhalten in der Angebotsphase häufig BIM-Modelle, die primär für architektonische oder genehmigungsrechtliche Zwecke erstellt wurden. Diese Modelle sind für die interne Mengenermittlung oft nur eingeschränkt nutzbar, da relevante Daten fehlen oder nicht in der benötigten Form vorliegen. Das IDS-Format erlaubt zwar die formale Beschreibung der benötigten Anforderungen, wird derzeit aber fast ausschließlich implementiert, um Konformität zu \textit{prüfen} (Validierung), ohne Werkzeuge bereitzustellen, die das Modell \textit{korrigieren} oder anreichern.
 
-\section{Methode}
-\label{sec:methode}
+Es fehlt an Untersuchungen und Werkzeugen, die IDS als Grundlage nutzen, um Techniker:innen aktiv beim Ergänzen fehlender Informationen zu unterstützen. Gerade für ausführende Unternehmen wäre eine solche Funktionalität in offenen Werkzeugen (wie Blender oder IfcOpenShell) von großem Wert, um Fremdmodelle effizient an interne Standards anzupassen.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{adams1995hitchhiker}.
+\subsection{Forschungsfrage}
+Aus dieser Problemstellung leitet sich die folgende zentrale Forschungsfrage ab:
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{adams1995hitchhiker}.
+\begin{quote}
+\textit{Wie kann die Information Delivery Specification (IDS) genutzt werden, um Fachanwender:innen in der Angebotsphase bei der gezielten Anreicherung von IFC-Modellen für die Mengenermittlung zu unterstützen?}
+\end{quote}
 
+\subsection{Hypothese}
+Zur Beantwortung der Forschungsfrage wird folgende Hypothese (H1) aufgestellt:
+IDS kann als nutzungsorientierte Schnittstelle dienen, die Fachanwender:innen bei der strukturierten Anreicherung von IFC-Modellen effizient unterstützt und die Qualität der Modelle messbar verbessert.
 
+\section{Theoretischer Hintergrund}
+\label{sec:theory}
+
+Der theoretische Rahmen dieser Arbeit stützt sich auf die Standards von buildingSMART sowie aktuelle Forschung zur Anreicherung von BIM-Daten.
+
+\begin{itemize}
+    \item \textbf{Grundlagen (BIM, IFC, IDS):} Es werden die technischen Grundlagen von IFC als offenem Dateistandard und IDS als Format für Informationsanforderungen erläutert.
+    \item \textbf{Stand der Forschung:} Die Arbeit knüpft an aktuelle Erkenntnisse von de Marco, Slongo \& Siegele (2024) an, die bereits prototypische Ansätze zur Anreicherung von BIM-Modellen durch IDS aufzeigen \cite{deMarco2024}. Zudem wird auf die Arbeit von Nawab (2024) Bezug genommen, welche die Optimierung der BIM-Integration in der Angebotskalkulation am Beispiel der Swietelsky AG analysiert \cite{Nawab2024}.
+    \item \textbf{Forschungslücke:} Während erste Ansätze existieren, ist die praktische Umsetzung in Open-Source-Umgebungen und die Tauglichkeit für den Arbeitsalltag in der Kalkulation noch kaum erforscht. Diese Arbeit greift diese Lücke auf, indem sie IDS nicht nur als Prüfmechanismus, sondern als Interaktionsgrundlage betrachtet.
+\end{itemize}
+
+\section{Wissenschaftliche Herangehensweise}
+\label{sec:method}
+
+Zur Beantwortung der Forschungsfrage wird ein \textbf{Mixed-Methods-Ansatz} gewählt, der eine quantitative technische Analyse mit einer qualitativen Evaluation verbindet.
+
+\subsection{Untersuchungsdesign \& Prototyp}
+Es wird ein prototypischer Workflow bzw. eine Benutzeroberfläche entwickelt, die IDS-Informationen nutzt, um Anwender:innen beim Ergänzen von Daten zu leiten. Die unabhängige Variable ist dabei der Einsatz dieser IDS-basierten Benutzeroberfläche.
+
+\subsection{Datenerhebung \& Stichprobe}
+Zwei Datentypen werden erhoben:
+
+\begin{enumerate}
+    \item \textbf{Quantitative Analyse (Technische Validierung):}
+    \begin{itemize}
+        \item \textit{Material:} 5--10 repräsentative IFC-Modelle aus realen oder anonymisierten Projekten der Angebotskalkulation, die typische Defizite aufweisen.
+        \item \textit{Methode:} Durchführung von IDS-Validierungen vor und nach der Bearbeitung mit dem Prototyp. Die Ergebnisse werden mithilfe des Open-Source-Tools \textit{IfcTester} dokumentiert und gegenübergestellt \cite{ifctester}.
+    \end{itemize}
+    \item \textbf{Qualitative Analyse (Expertenfeedback):}
+    \begin{itemize}
+        \item \textit{Stichprobe:} 2--3 Expert:inneninterviews mit Fachanwender:innen.
+        \item \textit{Methode:} Nach der Testnutzung des Prototyps wird Feedback zur Praxistauglichkeit, Verständlichkeit und Zufriedenheit erhoben.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Datenauswertung}
+Die technischen Daten (Validierungsreports) werden vergleichend analysiert, um die Qualitätssteigerung der Modelle zu messen. Die qualitativen Interviews werden inhaltsanalytisch (in Anlehnung an Mayring) ausgewertet.
+
+\section{Schlussfolgerung, Abgrenzung und weitere Forschung}
+\label{sec:conclusion}
+
+\textbf{Erwarteter Beitrag:} Die Arbeit soll zeigen, dass IDS mehr als ein reines Validierungsinstrument ist. Ein erfolgreicher Nachweis würde bedeuten, dass der Nachbearbeitungsaufwand in der Angebotsphase durch strukturierte Benutzerführung gesenkt und die BIM-Datennutzung wirtschaftlicher gestaltet werden kann.
+
+\textbf{Abgrenzung und Risiken:} Die Untersuchung beschränkt sich auf die Phase der Angebotserstellung und die Mengenermittlung im Hochbau. Architektonische Planungsaspekte oder andere Bauphasen werden nicht betrachtet. Mögliche Einschränkungen ergeben sich aus der kleinen Stichprobengröße (5--10 Modelle) und der variierenden Qualität der Ausgangsmodelle, was die Generalisierbarkeit erschweren könnte. Zudem können technische Kompatibilitätsprobleme bei der Nutzung von Open-Source-Bibliotheken auftreten.
+
+\section{Zeitplan}
+\label{sec:timeline}
+
+Der folgende Zeitplan skizziert die geplante Durchführung der Bachelorarbeit:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Phase} & \textbf{Tätigkeiten} \\ \hline
+Monat 1 & Literaturrecherche, Finalisierung des Forschungsdesigns, Beschaffung der IFC-Testmodelle. \\ \hline
+Monat 2 & Entwicklung des Prototyps (IDS-UI Integration) und Vorbereitung der IDS-Requirements. \\ \hline
+Monat 3 & Durchführung der Tests (Modellanreicherung), Validierung (IfcTester) und Experteninterviews. \\ \hline
+Monat 4 & Auswertung der Daten (Vergleich Reports \& Interviewanalyse), Verfassen der Arbeit, Korrekturphase. \\ \hline
+\end{tabular}
+\caption{Vorläufiger Zeitplan}
+\end{table}
