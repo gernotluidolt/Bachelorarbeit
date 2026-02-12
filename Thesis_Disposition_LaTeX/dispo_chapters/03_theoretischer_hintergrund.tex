@@ -1,27 +1,3 @@
 \section{Theoretischer Hintergrund}
 \label{sec:theory}
 
-Dieses Kapitel erläutert die technologischen und konzeptionellen Grundlagen, die für die Entwicklung des IDS-basierten Anreicherungswerkzeugs maßgeblich sind.
-
-\subsection{Building Information Modeling und der IFC-Standard}
-Building Information Modeling (BIM) beschreibt eine Methode, bei der relevante Daten über den gesamten Lebenszyklus eines Bauwerks in einem digitalen Modell erfasst werden. Zur Gewährleistung der Interoperabilität in Open-BIM-Projekten dient die Industry Foundation Classes (IFC) als offener, neutraler Dateistandard. IFC ermöglicht den Austausch von geometrischen und alphanumerischen Informationen zwischen verschiedenen Softwareanwendungen, wobei die korrekte Zuordnung von \textit{IFC Entities} und \textit{Property Sets} (PSets) essenziell für die Datennutzung in der Ausführungsphase ist.
-
-\subsection{Information Delivery Specification (IDS)}
-Die Information Delivery Specification (IDS) ist ein von buildingSMART entwickelter Standard zur formalen Beschreibung von Informationsanforderungen an ein IFC-Modell. 
-\begin{itemize}
-    \item IDS fungiert als maschinenlesbares Dokument, das festlegt, welche Objekte welche Attribute oder Klassifizierungen enthalten müssen.
-    \item Im Gegensatz zu älteren Formaten erlaubt IDS eine präzise Validierung der Modellkonformität gegenüber spezifischen Projektanforderungen.
-    \item Aktuelle Forschungsansätze zeigen, dass IDS über die reine Prüfung hinaus als Grundlage zur automatisierten Anreicherung (Enrichment) von Modellen dienen kann, um fehlende Daten strukturiert zu ergänzen.
-\end{itemize}
-
-[Image of Information Delivery Specification workflow]
-
-\subsection{Informationsbedarf und Level of Development}
-Ein zentrales Hemmnis für die effiziente Modellnutzung ist die Diskrepanz zwischen bereitgestellten und benötigten Informationen.
-\begin{itemize}
-    \item Der \textit{Level of Information Need} beschreibt den erforderlichen Detaillierungsgrad alphanumerischer Daten für einen spezifischen Anwendungsfall, wie etwa die Mengenermittlung[cite: 3].
-    \item Die mangelnde Definition dieser Anforderungen führt häufig zu unvollständigen Planungsmodellen, die für Bauunternehmen in der Angebotsphase eine zeitintensive Nachbearbeitung erfordern.
-\end{itemize}
-
-\subsection{Automatisierung durch bSDD und Open-Source-Tools}
-Zur Unterstützung der Standardisierung bietet der \textit{buildingSMART Data Dictionary} (bSDD) einen Service, um globale Klassifizierungen und Eigenschaften mit lokalen Anforderungen zu verknüpfen[cite: 3]. Technische Implementierungen für die automatisierte Modellbearbeitung nutzen häufig Open-Source-Bibliotheken wie \textit{IfcOpenShell}, die eine programmatische Modifikation von IFC-Dateien mittels Python ermöglichen und somit die Basis für das in dieser Arbeit entwickelte Artefakt bilden[cite: 1, 2].

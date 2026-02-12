@@ -1,28 +1,3 @@
 \section{Problemstellung und Forschungsfrage}
 \label{sec:problem}
 
-Die Digitalisierung der Bauwirtschaft durch Building Information Modeling (BIM) verspricht eine effizientere Abwicklung von Bauprojekten, stößt jedoch in der Schnittstelle zwischen Planung und Ausführung auf erhebliche Hürden \cite{behacker2020optimierung}. In der Angebotsphase stehen Bauunternehmen vor der Herausforderung, dass die von Planer:innen bereitgestellten IFC-Modelle primär für die Einreichung optimiert sind, jedoch selten die für eine präzise Mengenermittlung erforderliche Datentiefe aufweisen \cite{nawab2024optimierung}.
-
-\subsection{Detaillierte Problemanalyse}
-Der aktuelle Prozess der Modellübergabe ist geprägt von einem Informationsverlust, der oft als "`Bruch"' in der digitalen Kette beschrieben wird \cite{behacker2020optimierung}. Relevante Daten über ein Bauwerk werden zwar im digitalen Modell erfasst \cite{borrmann2015building}, doch für die ausführende Ebene ergeben sich spezifische Defizite:
-
-\begin{itemize}
-    \item \textbf{Mangelnde Modellnutzbarkeit:} IFC-Modelle aus der Planung bieten Informationen oft gar nicht oder nicht in der vom Bauunternehmen benötigten Form ab \cite{nawab2024optimierung}. 
-    \item \textbf{Hoher Nachbearbeitungsaufwand:} Bauunternehmen benötigen strukturierte und vollständige Daten für die Mengenermittlung in der Angebotsphase \cite{nawab2024optimierung}. Da nicht jede Angebotslegung zu einem Auftrag führt, ist der aktuelle manuelle Korrekturaufwand ökonomisch besonders kritisch.
-    \item \textbf{Diskrepanz der Informationsbedarfe:} Es besteht eine signifikante Lücke zwischen dem bereitgestellten Informationsgehalt und den tatsächlichen Anforderungen der Kalkulation, was oft als Problem des "`Level of Information Need"' thematisiert wird \cite{abualdenien2022levels, CAVALLIERE2019102925}.
-    \item \textbf{Eingeschränkte Nutzung von Standards:} Das IDS-Format (Information Delivery Specification) erlaubt zwar die formale Beschreibung von Modellanforderungen, wird bisher jedoch vor allem zur passiven Validierung eingesetzt \cite{de2024enriching, kladz2025ids}. Aktuelle Implementierungen prüfen lediglich die Konformität, ohne Modelle gezielt anreichern zu können.
-\end{itemize}
-
-\subsection{Forschungsfrage und Thesen}
-Gerade in der Angebotsphase könnte eine Anreicherung auf Basis von IDS erheblichen Mehrwert schaffen, indem Fremdmodelle an interne Standards angepasst werden \cite{de2024enriching}. Während erste prototypische Ansätze existieren, ist die Praxistauglichkeit für ausführende Unternehmen kaum untersucht. Daher adressiert diese Arbeit folgende zentrale Forschungsfrage:
-
-\begin{quote}
-\textit{Wie kann die Information Delivery Specification (IDS) genutzt werden, um Fachanwender:innen in der Angebotsphase bei der gezielten Anreicherung von IFC-Modellen für die Mengenermittlung zu unterstützen?}
-\end{quote}
-
-Zur Beantwortung dieser Frage wird folgende Arbeitsthese aufgestellt:
-\begin{itemize}
-    \item \textbf{T1:} Eine IDS-gestützte Entwicklung eines Werkzeugs zur strukturierten Anreicherung von IFC-Modellen in der Angebotsphase ist technisch realisierbar und für Fachanwender:innen nützlich.
-\end{itemize}
-
-Das Ziel ist der Nachweis, dass IDS über die reine Prüffunktion hinaus als Grundlage für eine praxisnahe, teilautomatisierte Modellaufbereitung dienen kann.
