@@ -1,27 +1,23 @@
-
 \section{Wissenschaftliche Herangehensweise}
 \label{sec:method}
 
-Zur Beantwortung der Forschungsfrage wird ein \textbf{Mixed-Methods-Ansatz} gewählt, der eine quantitative technische Analyse mit einer qualitativen Evaluation verbindet.
+Die vorliegende Arbeit folgt der Methodik des \textit{Design Science Research} (DSR). Im Gegensatz zu rein erklärenden Forschungsansätzen liegt der Fokus hierbei auf der Entwicklung und Evaluation eines innovativen Artefakts zur Lösung eines relevanten praktischen Problems \cite{hevner2004design}. Gemäß dem methodischen Rahmen des Constructive Research Approach (CRA) wird ein konstruktives Artefakt entwickelt, das ein reales Problem der Angebotsphase adressiert \cite{hevner2004design}.
 
-\subsection{Untersuchungsdesign \& Prototyp}
-Es wird ein prototypischer Workflow bzw. eine Benutzeroberfläche entwickelt, die IDS-Informationen nutzt, um Anwender:innen beim Ergänzen von Daten zu leiten. Die unabhängige Variable ist dabei der Einsatz dieser IDS-basierten Benutzeroberfläche.
+\subsection{Forschungsdesign und Prozessmodell}
+Das methodische Vorgehen orientiert sich am Prozessmodell von Peffers et al. \cite{peffers2007design}, welches einen strukturierten Rahmen in sechs Phasen bietet:
 
-\subsection{Datenerhebung \& Stichprobe}
-Zwei Datentypen werden erhoben:
+\begin{itemize}
+    \item \textbf{Problemidentifikation:} Dokumentation der unzureichenden Datenqualität in IFC-Modellen für die Angebotsphase \cite{peffers2007design}. Hierbei werden typische Datenlücken in Modellen analysiert, die für die Angebotsphase benötigt werden.
+    \item \textbf{Definition der Lösungsziele:} Ableitung funktionaler Anforderungen an eine IDS-gestützte Datenanreicherung aus Literatur und Expertenwissen \cite{peffers2007design}.
+    \item \textbf{Design und Entwicklung:} Konstruktion des Python-basierten Prototyps zur automatisierten Modifikation von IFC-Dateien unter Verwendung von IfcOpenShell \cite{peffers2007design}.
+    \item \textbf{Demonstration:} Anwendung des Artefakts auf reale oder anonymisierte IFC-Modelle aus Angebotsprojekten zur Überprüfung der technischen Machbarkeit \cite{peffers2007design}.
+    \item \textbf{Evaluation:} Systematische Überprüfung der Artefaktqualität (siehe Abschnitt \ref{subsec:evaluation}).
+    \item \textbf{Kommunikation:} Dokumentation der Ergebnisse und des generierten Gestaltungswissens im Rahmen dieser Arbeit \cite{peffers2007design}.
+\end{itemize}
 
-\begin{enumerate}
-    \item \textbf{Quantitative Analyse (Technische Validierung):}
-    \begin{itemize}
-        \item \textit{Material:} 5--10 repräsentative IFC-Modelle aus realen oder anonymisierten Projekten der Angebotskalkulation, die typische Defizite aufweisen.
-        \item \textit{Methode:} Durchführung von IDS-Validierungen vor und nach der Bearbeitung mit dem Prototyp. Die Ergebnisse werden mithilfe des Open-Source-Tools \textit{IfcTester} dokumentiert und gegenübergestellt \cite{ifctester}.
-    \end{itemize}
-    \item \textbf{Qualitative Analyse (Expertenfeedback):}
-    \begin{itemize}
-        \item \textit{Stichprobe:} 2--3 Expert:inneninterviews mit Fachanwender:innen.
-        \item \textit{Methode:} Nach der Testnutzung des Prototyps wird Feedback zur Praxistauglichkeit, Verständlichkeit und Zufriedenheit erhoben.
-    \end{itemize}
-\end{enumerate}
+\subsection{Evaluationsstrategie}
+\label{subsec:evaluation}
+Die Evaluation des Artefakts erfolgt nach dem \textit{Framework for Evaluation in Design Science} (FEDS) von Venable et al. \cite{venable2016feds}. Um den iterativen Charakter der Entwicklung zu berücksichtigen, wird eine \textit{formative Evaluation} gewählt. Diese umfasst eine technische Verifikation der Datenkonformität mittels einer Anforderungs-/Erfüllungsmatrix sowie eine qualitative Validierung der Praxistauglichkeit durch strukturierte Rückmeldungen von Fachanwender:innen \cite{venable2016feds}.
 
-\subsection{Datenauswertung}
-Die technischen Daten (Validierungsreports) werden vergleichend analysiert, um die Qualitätssteigerung der Modelle zu messen. Die qualitativen Interviews werden inhaltsanalytisch (in Anlehnung an Mayring) ausgewertet.
+\subsection{Wissenschaftliche Strenge und Relevanz}
+Die Qualität der Forschung wird durch die Einhaltung der sieben Guidelines nach Hevner et al. \cite{hevner2004design} gewährleistet. Hierbei wird sichergestellt, dass das entwickelte Werkzeug sowohl eine technologische Innovation darstellt als auch einen messbaren Mehrwert für die Bauwirtschaft generiert, indem IDS über die reine Validierung hinaus zur Modellanreicherung genutzt wird \cite{hevner2004design}.
