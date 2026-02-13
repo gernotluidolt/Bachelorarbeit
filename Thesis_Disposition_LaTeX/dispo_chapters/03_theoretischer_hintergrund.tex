@@ -25,29 +25,29 @@ zum Datenaustausch effektiv zu nutzen \cite{eichler2024bimcert}.
 \label{subsec:openbim}
 Im Gegensatz zu \textit{ClosedBIM}, bei dem der Datenaustausch innerhalb einer geschlossenen Softwarefamilie (proprietär) stattfindet, basiert \textit{OpenBIM} auf herstellerneutralen Standards und Workflows. Dieser Ansatz ist für die vorliegende Arbeit von zentraler Bedeutung, da der entwickelte Prototyp darauf ausgelegt ist, Modelle unabhängig von ihrer Autorensoftware (z. B. Autodesk Revit, Graphisoft Archicad oder Nemetschek Allplan) zu verarbeiten \cite{eichler2024bimcert}.
 \subsubsection{Der softwareunabhängige Datenaustausch}
-Das Hauptziel von OpenBIM ist die Interoperabilität. Dabei werden Daten nicht in einem proprietären Format, sondern über offene Standards wie IFC übergeben. Dies verhindert den sogenannten \textit{Vendor Lock-in} und ermöglicht es den Projektbeteiligten, die für ihre spezifischen Aufgaben am besten geeignete Software zu wählen (Best-of-Breed-Ansatz), ohne den Informationsfluss zu unterbrechen \cite{eichler2024bimcert}. In der für diese Arbeit kritischen Angebotsphase erlaubt OpenBIM die Konsolidierung von Fachmodellen verschiedener Planer, um eine gewerbeübergreifende Mengenermittlung durchzuführen.
+Das Hauptziel von OpenBIM ist die Interoperabilität. Dabei werden Daten nicht in einem proprietären Format, sondern über offene Standards wie \gls{ifc} übergeben. Dies verhindert den sogenannten \textit{Vendor Lock-in} und ermöglicht es den Projektbeteiligten, die für ihre spezifischen Aufgaben am besten geeignete Software zu wählen (Best-of-Breed-Ansatz), ohne den Informationsfluss zu unterbrechen \cite{eichler2024bimcert}. In der für diese Arbeit kritischen Angebotsphase erlaubt OpenBIM die Konsolidierung von Fachmodellen verschiedener Planer, um eine gewerbeübergreifende Mengenermittlung durchzuführen.
 
 \subsubsection{buildingSMART als Standardisierungsinstanz}
 Die treibende Kraft hinter diesen offenen Standards ist die internationale Non-Profit-Organisation \textit{buildingSMART}. Sie fungiert als Hüterin und Entwicklerin des OpenBIM-Ökosystems. Zu den wesentlichen von buildingSMART bereitgestellten Standards, die auch in dieser Arbeit Anwendung finden, gehören \cite{eichler2024bimcert}:
 
 \begin{itemize}
-    \item \textbf{IFC (Industry Foundation Classes):} Das Schema zur Beschreibung der Bauwerksdaten (siehe Kap. \ref{subsec:ifc}).
-    \item \textbf{IDS (Information Delivery Specification):} Der Standard zur maschinenlesbaren Definition von Informationsanforderungen (siehe Kap. \ref{subsec:ids}).
-    \item \textbf{BCF (BIM Collaboration Format):} Ein Kommunikationsformat zur Übermittlung von modellbasierten Fehlern oder Änderungswünschen, ohne das gesamte Modell neu übertragen zu müssen.
-    \item \textbf{bSDD (buildingSMART Data Dictionary):} Eine Online-Bibliothek zur semantischen Eindeutigkeit von Bauteilklassifizierungen und Eigenschaften.
+    \item \textbf{\gls{ifc} (Industry Foundation Classes):} Das Schema zur Beschreibung der Bauwerksdaten (siehe Kap. \ref{subsec:ifc}).
+    \item \textbf{\gls{ids} (Information Delivery Specification):} Der Standard zur maschinenlesbaren Definition von Informationsanforderungen (siehe Kap. \ref{subsec:ids}).
+    \item \textbf{\gls{bcf} (BIM Collaboration Format):} Ein Kommunikationsformat zur Übermittlung von modellbasierten Fehlern oder Änderungswünschen, ohne das gesamte Modell neu übertragen zu müssen.
+    \item \textbf{\gls{bsdd} (buildingSMART Data Dictionary):} Eine Online-Bibliothek zur semantischen Eindeutigkeit von Bauteilklassifizierungen und Eigenschaften.
 \end{itemize}
 
 Durch die konsequente Nutzung dieser Standards wird sichergestellt, dass die im Prototyp vorgenommene Modellanreicherung valide bleibt und die angereicherten Daten wiederum in anderen OpenBIM-konformen Softwarelösungen gelesen werden können.
 
 %%%%%%
 
-\subsection{Das IFC-Datenmodell (Industry Foundation Classes)}
+\subsection{Das \gls{ifc}-Datenmodell (Industry Foundation Classes)}
 \label{subsec:ifc}
 
-Das IFC-Datenmodell stellt den zentralen Standard für den herstellerneutralen Datenaustausch im Bauwesen dar und ist als ISO 16739-1 international normiert \cite{eichler2024bimcert}. Es dient nicht nur als Dateiformat, sondern primär als Daten-Schema, welches die formale Struktur und die semantischen Beziehungen von Bauwerksinformationen definiert.
+Das \gls{ifc}-Datenmodell stellt den zentralen Standard für den herstellerneutralen Datenaustausch im Bauwesen dar und ist als ISO 16739-1 international normiert \cite{eichler2024bimcert}. Es dient nicht nur als Dateiformat, sondern primär als Daten-Schema, welches die formale Struktur und die semantischen Beziehungen von Bauwerksinformationen definiert.
 
 \subsubsection{Schema-Struktur und konzeptionelle Schichten}
-Die Architektur des IFC-Schemas ist zur Gewährleistung der Datenintegrität in vier konzeptionelle Schichten (\textit{Conceptual Layers}) unterteilt, die streng hierarchisch aufeinander aufbauen \cite{eichler2024bimcert}:
+Die Architektur des \gls{ifc}-Schemas ist zur Gewährleistung der Datenintegrität in vier konzeptionelle Schichten (\textit{Conceptual Layers}) unterteilt, die streng hierarchisch aufeinander aufbauen \cite{eichler2024bimcert}:
 
 \begin{itemize}
     \item \textbf{Resource Layer:} Die unterste Schicht enthält grundlegende Definitionen (z. B. Geometrie, Maßeinheiten), die keine eigene globale Identität (GUID) besitzen.
@@ -57,7 +57,7 @@ Die Architektur des IFC-Schemas ist zur Gewährleistung der Datenintegrität in 
 \end{itemize}
 
 \subsubsection{Objekt-Hierarchie und Vererbung}
-Ein wesentliches Merkmal von IFC ist die objektorientierte Logik der Vererbung. Fast alle physischen und abstrakten Elemente stammen von der Basisklasse \texttt{IfcRoot} ab und erben deren Kern-Attribute (\textit{GlobalId}, \textit{Name}, \textit{Description}). 
+Ein wesentliches Merkmal von \gls{ifc} ist die objektorientierte Logik der Vererbung. Fast alle physischen und abstrakten Elemente stammen von der Basisklasse \texttt{IfcRoot} ab und erben deren Kern-Attribute (\textit{GlobalId}, \textit{Name}, \textit{Description}). 
 
 Räumlich wird das Modell durch die \textit{Spatial Structure} gegliedert. Diese Baumstruktur stellt sicher, dass jedes Element eindeutig im Projekt verortet ist, typischerweise in der Hierarchie: 
 \texttt{IfcProject} $\rightarrow$ \texttt{IfcSite} $\rightarrow$ \texttt{IfcBuilding} $\rightarrow$ \texttt{IfcBuildingStorey} $\rightarrow$ \texttt{IfcProduct} \cite{eichler2024bimcert}.
@@ -66,7 +66,7 @@ Räumlich wird das Modell durch die \textit{Spatial Structure} gegliedert. Diese
 Für die im Rahmen dieser Arbeit angestrebte Modellanreicherung ist die Differenzierung zwischen festen Attributen und flexiblen Eigenschaften essenziell:
 
 \begin{itemize}
-    \item \textbf{Attribute (statisch):} Diese sind fest im IFC-Schema für die jeweilige Klasse definiert (z. B. \texttt{Name}, \texttt{Tag}, \texttt{OverallHeight}). Sie können nicht ohne Änderung des Schemas erweitert werden \cite{eichler2024bimcert}.
+    \item \textbf{Attribute (statisch):} Diese sind fest im \gls{ifc}-Schema für die jeweilige Klasse definiert (z. B. \texttt{Name}, \texttt{Tag}, \texttt{OverallHeight}). Sie können nicht ohne Änderung des Schemas erweitert werden \cite{eichler2024bimcert}.
     \item \textbf{Properties (dynamisch):} Eigenschaften werden in \textit{Property Sets} (Psets) organisiert und über eine \texttt{IfcRelDefinesByProperties}-Beziehung mit dem Objekt verknüpft. Während Standard-Psets (z. B. \texttt{Pset\_WallCommon}) von buildingSMART vorgegeben sind, erlauben benutzerdefinierte Psets die Integration projektspezifischer Kalkulationsparameter \cite{eichler2024bimcert}.
     \item \textbf{Quantities (Mengen):} Spezifische Mengeninformationen (Flächen, Volumina, Massen) werden in \textit{Quantity Sets} (Qto) strukturiert (z. B. \texttt{Qto\_WallBaseQuantities}), was die Grundlage für die automatisierte Mengenermittlung bildet \cite{eichler2024bimcert}.
 \end{itemize}
@@ -76,10 +76,10 @@ Für die im Rahmen dieser Arbeit angestrebte Modellanreicherung ist die Differen
 \subsection{Information Delivery Specification (IDS)}
 \label{subsec:ids}
 
-Die \textit{Information Delivery Specification} (IDS) ist ein von buildingSMART International entwickelter Standard zur maschinenlesbaren Definition von Informationsanforderungen in BIM-Projekten \cite{buildingsmartIds}. Im Gegensatz zu herkömmlichen, oft unstrukturierten Anforderungen in Excel-Tabellen fungiert die IDS als „digitaler Vertrag“, der präzise festlegt, welche Daten zu welchem Zeitpunkt in einem IFC-Modell vorhanden sein müssen \cite{eichler2024bimcert}.
+Die \textit{Information Delivery Specification} (\gls{ids}) ist ein von buildingSMART International entwickelter Standard zur maschinenlesbaren Definition von Informationsanforderungen in \gls{bim}-Projekten \cite{buildingsmartIds}. Im Gegensatz zu herkömmlichen, oft unstrukturierten Anforderungen in Excel-Tabellen fungiert die \gls{ids} als „digitaler Vertrag“, der präzise festlegt, welche Daten zu welchem Zeitpunkt in einem \gls{ifc}-Modell vorhanden sein müssen \cite{eichler2024bimcert}.
 
 \subsubsection{Logische Struktur: Applicability und Requirements}
-Die funktionale Logik einer IDS-Spezifikation basiert auf einer klaren Trennung zwischen der Auswahl der Objekte und den an sie gestellten Forderungen:
+Die funktionale Logik einer \gls{ids}-Spezifikation basiert auf einer klaren Trennung zwischen der Auswahl der Objekte und den an sie gestellten Forderungen:
 
 \begin{itemize}
     \item \textbf{Applicability (Anwendbarkeit):} Dieser Bereich definiert den Filter für die Zielobjekte. Hier wird festgelegt, für welche Elemente eine Anforderung gilt (z. B. „Alle Objekte des Typs \texttt{IFCWALL} mit dem Attribut \texttt{LoadBearing=true}“).
@@ -87,41 +87,41 @@ Die funktionale Logik einer IDS-Spezifikation basiert auf einer klaren Trennung 
 \end{itemize}
 
 \subsubsection{Technische Basis und Facetten}
-Technisch basiert IDS auf dem XML-Format (\textit{Extensible Markup Language}). Diese Struktur ermöglicht ein effizientes softwareseitiges Parsing, was die Grundlage für automatisierte Workflows – wie die in dieser Arbeit angestrebte Modellanreicherung – bildet. Die Anforderungen werden dabei über sogenannte \textit{Facets} definiert, die verschiedene Aspekte des IFC-Schemas adressieren:
+Technisch basiert \gls{ids} auf dem XML-Format (\textit{Extensible Markup Language}). Diese Struktur ermöglicht ein effizientes softwareseitiges Parsing, was die Grundlage für automatisierte Workflows – wie die in dieser Arbeit angestrebte Modellanreicherung – bildet. Die Anforderungen werden dabei über sogenannte \textit{Facets} definiert, die verschiedene Aspekte des \gls{ifc}-Schemas adressieren:
 
 \begin{itemize}
-    \item \textbf{Entity Facet:} Referenziert IFC-Klassen (z. B. \texttt{IFCSPACE}).
+    \item \textbf{Entity Facet:} Referenziert \gls{ifc}-Klassen (z. B. \texttt{IFCSPACE}).
     \item \textbf{Property Facet:} Definiert Anforderungen an Merkmale innerhalb von Property Sets (inkl. Datentyp und erlaubten Werten).
     \item \textbf{Attribute Facet:} Bezieht sich auf native IFC-Attribute wie den Namen oder die GUID.
     \item \textbf{Classification/Material Facet:} Prüft die Zuweisung zu externen Klassifizierungssystemen oder Materialvorgaben.
 \end{itemize}
 
-Ein wesentlicher Vorteil der IDS ist die Möglichkeit, komplexe Restriktionen (\textit{Complex Restrictions}) zu definieren. So können mittels Enumerationen (Wertelisten) oder Patterns (Reguläre Ausdrücke) exakte Formatvorgaben für die Kalkulationsdaten gemacht werden \cite{eichler2024bimcert}. Zudem erlaubt die Einbindung von URIs eine direkte Verknüpfung mit dem \textit{buildingSMART Data Dictionary} (bSDD), wodurch eine semantische Eindeutigkeit der geforderten Merkmale sichergestellt wird \cite{buildingsmartIds}.
+Ein wesentlicher Vorteil der \gls{ids} ist die Möglichkeit, komplexe Restriktionen (\textit{Complex Restrictions}) zu definieren. So können mittels Enumerationen (Wertelisten) oder Patterns (Reguläre Ausdrücke) exakte Formatvorgaben für die Kalkulationsdaten gemacht werden \cite{eichler2024bimcert}. Zudem erlaubt die Einbindung von URIs eine direkte Verknüpfung mit dem \textit{buildingSMART Data Dictionary} (\gls{bsdd}), wodurch eine semantische Eindeutigkeit der geforderten Merkmale sichergestellt wird \cite{buildingsmartIds}.
 
-Durch diese Standardisierung bildet IDS die ideale Grundlage, um nicht nur die Konformität eines Modells zu prüfen, sondern – wie im Prototyp dieser Arbeit umgesetzt – gezielte Anreicherungslogiken für die Mengenermittlung abzuleiten.
+Durch diese Standardisierung bildet \gls{ids} die ideale Grundlage, um nicht nur die Konformität eines Modells zu prüfen, sondern – wie im Prototyp dieser Arbeit umgesetzt – gezielte Anreicherungslogiken für die Mengenermittlung abzuleiten.
 
 %%%%%%
 
 \subsection{OpenBIM-Programmierung mit IfcOpenShell}
 \label{subsec:ifcopenshell}
-Die technische Umsetzung der Modellanreicherung basiert auf einem integrierten OpenBIM-Softwarestack. Als Kernkomponente dient die Open-Source-Bibliothek \textit{IfcOpenShell}, die eine programmatische Manipulation von IFC-Dateien ermöglicht \cite{ifcopenshell}.
+Die technische Umsetzung der Modellanreicherung basiert auf einem integrierten OpenBIM-Softwarestack. Als Kernkomponente dient die Open-Source-Bibliothek \textit{IfcOpenShell}, die eine programmatische Manipulation von \gls{ifc}-Dateien ermöglicht \cite{ifcopenshell}.
 
 Um die Praxistauglichkeit für Fachanwender:innen in der Angebotsphase zu gewährleisten, wird der Prototyp als Erweiterung für die 3D-Software \textbf{Blender} entwickelt. Dabei kommt das Add-on \textbf{Bonsai} (ehemals BlenderBIM) zum Einsatz, welches als grafische Benutzeroberfläche und Koordinationsinstanz fungiert.
 
 Die Kombination dieser Werkzeuge ermöglicht einen integrierten Workflow:
 \begin{itemize}
-    \item \textbf{Visuelle Kontextualisierung (Blender/Bonsai):} Die Fachanwender:innen können das IFC-Modell in einer performanten 3D-Umgebung sichten. Bonsai dient dabei als Brücke, um IFC-Daten direkt im Arbeitsspeicher von Blender zu halten und visuell mit alphanumerischen Attributen zu verknüpfen.
-    \item \textbf{Automatisierte Validierung (IfcTester):} Innerhalb der gewählten Umgebung wird der \textit{IfcTester} genutzt, um die in der IDS definierten Anforderungen gegen das geladene Modell zu prüfen und Defizite direkt zu lokalisieren.
+    \item \textbf{Visuelle Kontextualisierung (Blender/Bonsai):} Die Fachanwender:innen können das \gls{ifc}-Modell in einer performanten 3D-Umgebung sichten. Bonsai dient dabei als Brücke, um \gls{ifc}-Daten direkt im Arbeitsspeicher von Blender zu halten und visuell mit alphanumerischen Attributen zu verknüpfen.
+    \item \textbf{Automatisierte Validierung (IfcTester):} Innerhalb der gewählten Umgebung wird der \textit{IfcTester} genutzt, um die in der \gls{ids} definierten Anforderungen gegen das geladene Modell zu prüfen und Defizite direkt zu lokalisieren.
     \item \textbf{Gezielte Datenanreicherung (IfcOpenShell API):} Über den \texttt{ifcopenshell.api}-Layer werden die identifizierten Lücken geschlossen. Der Prototyp erweitert die Bonsai-Oberfläche um spezifische Funktionen, die Property Sets und Mengeninformationen regelbasiert injizieren.
     \item \textbf{Objektive Erfolgskontrolle:} Durch den erneuten Aufruf des \textit{IfcTesters} kann die Wirksamkeit der Anreicherung unmittelbar in der Benutzeroberfläche verifiziert werden (siehe Kap. \ref{subsec:evaluation}).
 \end{itemize}
 
-Durch die Nutzung von Bonsai als Grundlage entfällt die Notwendigkeit, eine vollständig neue GUI zu entwickeln. Stattdessen kann der Fokus auf der Logik der IDS-basierten Anreicherung liegen, während gleichzeitig eine realitätsnahe Nutzungsumgebung für die Evaluation simuliert wird.
+Durch die Nutzung von Bonsai als Grundlage entfällt die Notwendigkeit, eine vollständig neue GUI zu entwickeln. Stattdessen kann der Fokus auf der Logik der \gls{ids}-basierten Anreicherung liegen, während gleichzeitig eine realitätsnahe Nutzungsumgebung für die Evaluation simuliert wird.
 
 %%%%%
 
 \subsection{Derzeitige Forschungslücken}
 
-Aktuelle Forschungen zum Einsatz von IDS, wie die von \cite{kladz2025ids}, fokussieren sich primär auf die reine Validierung, also das „Quality Checking“ von Modellen, um deren Konformität sicherzustellen. Die passive Anwendung dieser Spezifikationen – gleichsam als „Test-Orakel“ für die Prüfung – ist weitgehend etabliert. Ein Forschungsmanko besteht jedoch in der aktiven Nutzung dieser standardisierten Maschinenlesbarkeit, insbesondere für die automatisierte Ergänzung fehlender oder unvollständiger Daten in der Planungsphase von Bauprojekten. Wie \cite{de2024enriching} betonen, besitzt IDS das Potenzial, über die reine Validierung hinaus zur „Modellanreicherung“ (Enrichment) beizutragen. Konkrete Implementierungen oder methodische Ansätze, die speziell auf die Anforderungen von Bauunternehmen in der Angebotsphase zugeschnitten sind, fehlen jedoch weitgehend.
+Aktuelle Forschungen zum Einsatz von \gls{ids}, wie die von \cite{kladz2025ids}, fokussieren sich primär auf die reine Validierung, also das „Quality Checking“ von Modellen, um deren Konformität sicherzustellen. Die passive Anwendung dieser Spezifikationen – gleichsam als „Test-Orakel“ für die Prüfung – ist weitgehend etabliert. Ein Forschungsmanko besteht jedoch in der aktiven Nutzung dieser standardisierten Maschinenlesbarkeit, insbesondere für die automatisierte Ergänzung fehlender oder unvollständiger Daten in der Planungsphase von Bauprojekten. Wie \cite{de2024enriching} betonen, besitzt \gls{ids} das Potenzial, über die reine Validierung hinaus zur „Modellanreicherung“ (Enrichment) beizutragen. Konkrete Implementierungen oder methodische Ansätze, die speziell auf die Anforderungen von Bauunternehmen in der Angebotsphase zugeschnitten sind, fehlen jedoch weitgehend.
 
-Diese Arbeit setzt hier an, indem sie aufzeigt, wie offene Standards (IDS, IFC) und Open-Source-Technologien (IfcOpenShell, Bonsai) kombiniert werden können, um eine durchgängige, transparente und praxisnahe Anreicherungslösung zu realisieren.
+Diese Arbeit setzt hier an, indem sie aufzeigt, wie offene Standards (\gls{ids}, \gls{ifc}) und Open-Source-Technologien (IfcOpenShell, Bonsai) kombiniert werden können, um eine durchgängige, transparente und praxisnahe Anreicherungslösung zu realisieren.
