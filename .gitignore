@@ -10,3 +10,12 @@ Thesis_Disposition_LaTeX/Thesis.pdf
 Thesis_Disposition_LaTeX/Thesis.ptc
 Thesis_Disposition_LaTeX/Thesis.synctex.gz
 *.aux
+.DS_Store
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
