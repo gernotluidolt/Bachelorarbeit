@@ -1,36 +1,63 @@
 \section{Problemstellung und Forschungsfrage}
 \label{sec:problem}
 
-Die Digitalisierung der Bauwirtschaft durch \gls{bim} verspricht eine signifikant effizientere Abwicklung von Bauprojekten, insbesondere durch die Optimierung des Informationsaustausches über den gesamten Lebenszyklus eines Bauwerks \cite{borrmann2015building}. In der Praxis stößt dieses Versprechen jedoch an der Schnittstelle zwischen Planung und Ausführung auf erhebliche Hürden.
+Die Digitalisierung der Bauwirtschaft durch \gls{bim} verspricht eine signifikant effizientere 
+Abwicklung von Bauprojekten, insbesondere durch die Optimierung des Informationsaustausches 
+über den gesamten Lebenszyklus eines Bauwerks \cite{borrmann2015building, sacks2018bim}. In der Praxis 
+stößt dieses Versprechen jedoch an der Schnittstelle zwischen Planung und Ausführung auf 
+erhebliche Hürden \cite{borrmann2015building, sacks2018bim}.
 
 \subsection{Ausgangssituation und Problemanalyse}
-In der Angebotsphase stehen Bauunternehmen vor der konkreten Herausforderung, dass die von Planern bereitgestellten \gls{ifc}-Modelle primär für die Genehmigungsplanung oder architektonische Visualisierung optimiert sind. Diese Modelle weisen jedoch selten die für eine präzise, kalkulationsrelevante Mengenermittlung erforderliche Datentiefe und Struktur auf \cite{behacker2020optimierung}. Es entsteht eine Diskrepanz zwischen dem gelieferten Modellinhalt und den tatsächlichen Anforderungen der Kalkulation; ein Problem, das in der Literatur oft als fehlende Definition des \glqq Level of Information Need\grqq\ beschrieben wird \cite{abualdenien2022levels}.
+In der Angebotsphase stehen Bauunternehmen vor der konkreten Herausforderung, dass die von 
+Planern bereitgestellten \gls{ifc}-Modelle primär für die Genehmigungsplanung oder 
+architektonische Visualisierung optimiert sind. 
+Diese Modelle weisen jedoch selten die für eine präzise, kalkulationsrelevante Mengenermittlung 
+erforderliche Datentiefe und Struktur auf \cite{sacks2018bim,borrmann2015building}. 
+Es entsteht eine Diskrepanz zwischen dem gelieferten Modellinhalt und den tatsächlichen 
+Anforderungen der Kalkulation; ein Problem, das in der Literatur oft als fehlende Definition 
+des \glqq Level of Information Need\grqq\ beschrieben wird \cite{abualdenien2022levels}.
 
-Der aktuelle Prozess der Modellübergabe ist daher von einem Informationsbruch geprägt. Obwohl geometrisch relevante Bauwerksdaten im digitalen Modell erfasst sind, ergeben sich für die ausführende Ebene spezifische Defizite:
+Der aktuelle Prozess der Modellübergabe ist daher von einem Informationsbruch geprägt. 
+Obwohl geometrisch relevante Bauwerksdaten im digitalen Modell erfasst sind, ergeben sich 
+für die ausführende Ebene spezifische Defizite:
 
 \begin{itemize}
-    \item \textbf{Mangelnde Modellnutzbarkeit:} \gls{ifc}-Modelle aus der Planungsphase stellen Informationen oft unstrukturiert oder nicht in der für die Kalkulation benötigten Granularität dar. Dies führt dazu, dass automatisierte Mengenermittlungen fehlerhaft oder unvollständig sind \cite{borrmann2015building}.
-    \item \textbf{Hoher Nachbearbeitungsaufwand:} Um Modelle nutzbar zu machen, sind Bauunternehmen gezwungen, umfangreiche manuelle Nachbearbeitungen durchzuführen oder interne \gls{bim}-Standards zu entwickeln, um fehlende Informationen zu ergänzen \cite{nawab2024optimierung}. Da nicht jede Angebotslegung zu einem Auftrag führt, ist dieser hohe manuelle Aufwand ökonomisch kritisch und stellt insbesondere für kleine und mittlere Unternehmen (KMU) eine Ressourcenhürde dar.
-    \item \textbf{Fehlende Standardisierung:} Während Formate wie \gls{ifc} den geometrischen Austausch regeln, fehlt es oft an einer klaren, maschinenlesbaren Definition der alphanumerischen Anforderungen. Der \gls{ids} Standard bietet hierfür einen Lösungsansatz, wird bisher jedoch vornehmlich zur passiven Validierung (Quality Checking) eingesetzt \cite{kladz2025ids}. Das Potenzial von \gls{ids}, nicht nur zur Prüfung, sondern zur aktiven Anreicherung von Modellen genutzt zu werden, ist in der Praxis noch wenig erschlossen \cite{de2024enriching}.
+    \item \textbf{Mangelnde Modellnutzbarkeit:} 
+    \gls{ifc}-Modelle aus der Planungsphase stellen Informationen oft unstrukturiert oder 
+    nicht in der für die Kalkulation benötigten Granularität dar. Dies führt dazu, dass 
+    automatisierte Mengenermittlungen fehlerhaft oder unvollständig sind 
+    \cite{borrmann2015building,sacks2018bim}.
+    \item \textbf{Hoher Nachbearbeitungsaufwand:} 
+    Um Modelle nutzbar zu machen, sind Bauunternehmen gezwungen, umfangreiche manuelle 
+    Nachbearbeitungen durchzuführen oder interne \gls{bim}-Standards zu entwickeln, um 
+    fehlende Informationen zu ergänzen \cite{nawab2024optimierung,amer20235d}.
+    \item \textbf{Fehlende Standardisierung:} 
+    Während Formate wie \gls{ifc} den geometrischen Austausch regeln, fehlt es oft an einer 
+    klaren, maschinenlesbaren Definition der alphanumerischen Anforderungen. Der \gls{ids} 
+    Standard bietet hierfür einen Lösungsansatz, wird bisher jedoch vornehmlich zur passiven 
+    Validierung eingesetzt \cite{kladz2025ids,buildingsmartIds,eichler2024bimcert}. 
+    Das Potenzial von \gls{ids}, nicht nur zur Prüfung, sondern zur aktiven Anreicherung 
+    von Modellen genutzt zu werden, ist in der Praxis noch wenig 
+    erschlossen \cite{de2024enriching,kladz2025ids}.
 \end{itemize}
 
-\subsection{Forschungsfrage und Thesen}
+\subsection{Forschungsfrage und These}
 
-Gerade in der kritischen Phase der Angebotserstellung könnte eine automatisierte oder teilautomatisierte Anreicherung von Modellen auf Basis von IDS erheblichen Mehrwert schaffen. Dies würde es ermöglichen, Fremdmodelle effizient an interne Unternehmensstandards anzupassen und so die Lücke zwischen Planung und Kalkulation zu schließen. Daher adressiert diese Arbeit folgende zentrale Forschungsfrage:
+Gerade in der kritischen Phase der Angebotserstellung könnte eine automatisierte oder 
+teilautomatisierte Anreicherung von Modellen auf Basis von IDS erheblichen Mehrwert schaffen. 
+Dies würde es ermöglichen, Fremdmodelle effizient an interne Unternehmensstandards anzupassen 
+und so die Lücke zwischen Planung und Kalkulation zu schließen. Daher adressiert diese Arbeit 
+folgende zentrale Forschungsfrage:
 
-\vspace{1em}
-\noindent\fbox{%
-    \parbox{\textwidth}{%
-        Wie kann die \gls{ids} genutzt werden, um Fachanwender:innen in der Angebotsphase bei der gezielten Anreicherung von \gls{ifc}-Modellen für die Mengenermittlung zu unterstützen?
-    }%
-}
-\vspace{1em}
+\begin{quote}
+    \textit{Wie kann die \gls{ids} genutzt werden, um Fachanwender:innen in der Angebotsphase bei der gezielten Anreicherung von \gls{ifc}-Modellen für die Mengenermittlung zu unterstützen?}
+\end{quote}
 
 Zur Beantwortung dieser Frage wird folgende Arbeitsthese aufgestellt:
 
 \begin{quote}
-    \textit{Eine \gls{ids}-gestützte Entwicklung eines Werkzeugs zur strukturierten Anreicherung von \gls{ifc}-Modellen in der Angebotsphase ist technisch realisierbar und für Fachanwender:innen nützlich.}
+    \textit{Eine Entwicklung eines Werkzeugs zur \gls{ids}-gestützten Anreicherung von \gls{ifc}-Modellen in der Angebotsphase ist technisch realisierbar und für Fachanwender:innen nützlich.}
 \end{quote}
 
-Das Ziel der Arbeit ist der Nachweis, dass \gls{ids} über die reine Prüffunktion hinaus als Grundlage für eine praxisnahe Transformation und Anreicherung von Bauwerksmodellen dienen kann (\textit{Enriching \gls{bim} models}) \cite{de2024enriching}, um so die Effizienz in der Angebotsphase zu steigern.
+Das Ziel der Arbeit ist der Nachweis, dass \gls{ids} über die reine Prüffunktion hinaus als Grundlage für eine praxisnahe Transformation und Anreicherung von Bauwerksmodellen dienen kann, um so die Effizienz in der Angebotsphase zu steigern.
 
