@@ -1,23 +1,55 @@
 \section{Schlussfolgerung, Abgrenzung und weitere Forschung}
 \label{sec:conclusion}
 
-Die geplante Arbeit schließt eine wesentliche Lücke in der praktischen Anwendung von \gls{ids}-Standards. Während die technische Validierung von Modellen bereits etabliert ist, bietet die aktive Modellanreicherung mittels \gls{ids} ein erhebliches Potenzial zur Prozessoptimierung in der Angebotsphase.
+Die geplante Arbeit schließt eine wesentliche Lücke in der praktischen Anwendung von 
+\gls{ids}-Standards. Während die technische Validierung von Modellen bereits etabliert ist, 
+bietet die aktive Modellanreicherung mittels \gls{ids} ein erhebliches Potenzial zur 
+Prozessoptimierung in der Angebotsphase.
 
 \subsection{Zusammenfassung und erwarteter Beitrag}
-Der angestrebte wissenschaftliche Beitrag dieser Arbeit liegt in dem Nachweis, dass die \gls{ids} als Datenquelle eingesetzt werden kann, um die Nachbearbeitung von \gls{ifc}-Modellen zu unterstützen und das dieser Prozess technisch möglich ist. Durch die Entwicklung und Evaluation des Prototyps wird aufgezeigt, wie die Modellkonformität für die anschließende modellbasierte automatische Mengenermittlung verbessert werden kann. Damit liefert die Arbeit sowohl ein technisches Artefakt als auch methodische Erkenntnisse zur Anwendung von Design Science Research im Kontext des Bauwesens.
+Der angestrebte wissenschaftliche Beitrag dieser Arbeit liegt in dem Nachweis, dass 
+die \gls{ids} als Datenquelle eingesetzt werden kann, um die Nachbearbeitung von 
+\gls{ifc}-Modellen zu unterstützen und das dieser Prozess technisch möglich ist. 
+Durch die Entwicklung und Evaluation des Prototyps wird aufgezeigt, wie die Modellkonformität 
+für die anschließende modellbasierte automatische Mengenermittlung verbessert werden kann. 
+Damit liefert die Arbeit sowohl ein technisches Artefakt als auch methodische Erkenntnisse 
+zur Anwendung von Design Science Research im Kontext des Bauwesens.
 
 \subsection{Abgrenzung der Forschung}
-Um den Fokus der Untersuchung zu schärfen und den Umfang der Arbeit einzugrenzen, werden folgende Aspekte explizit abgegrenzt:
+Um den Fokus der Untersuchung zu schärfen und den Umfang der Arbeit einzugrenzen, werden 
+folgende Aspekte explizit abgegrenzt:
 
 \begin{itemize}
-    \item \textbf{Fachliche Datenhoheit:} Der Prototyp stellt die technische Infrastruktur zur Anreicherung bereit. Die inhaltliche Verantwortung (z. B. die korrekte fachliche Zuweisung von Attributen zu Bauteilen durch den Anwender) verbleibt beim Menschen. Eine bautechnische Plausibilitätsprüfung der zugewiesenen Werte ist nicht Gegenstand der Untersuchung.
-    \item \textbf{Thematische Abgrenzung:} Die Arbeit konzentriert sich ausschließlich auf die Anreicherung von alphanumerischen Informationen (Properties/Attributes). Eine Korrektur von Modellgeometrien wird nicht betrachtet.
-    \item \textbf{Vollständige Prozessautomatisierung:} Der Fokus dieser Arbeit liegt primär auf der technischen Schnittstelle zwischen \gls{ids} und \gls{ifc}. Die Validität der anschließenden Mengenermittlung auf Basis \gls{ids}-konformer Modelle wird als Zielprozess vorausgesetzt. Eine vollumfängliche Prozessprüfung der kalkulatorischen Genauigkeit der Mengenermittlung findet nicht statt.    
-    \item \textbf{Software-Fokus:} Die Umsetzung erfolgt prototypisch auf Basis von Open-Source Technologien (IfcOpenShell). Eine direkte Integration als Plug-in in kommerzielle Autorensoftware (z. B. Revit oder Archicad) wird nicht durchgeführt.
-    \item \textbf{Phasen- und Geographische Abgrenzung:} Die Untersuchung beschränkt sich auf die Angebotsphase im Hochbau unter Berücksichtigung der im österreichischen Raum üblichen Austauschstandards.
+    \item \textbf{Fachliche Datenhoheit:} 
+    Der Prototyp stellt die technische Infrastruktur zur Anreicherung bereit. 
+    Die inhaltliche Verantwortung (z. B. die korrekte fachliche Zuweisung von Attributen 
+    zu Bauteilen durch den Anwender) verbleibt beim Menschen. Eine bautechnische 
+    Plausibilitätsprüfung der zugewiesenen Werte ist nicht Gegenstand der Untersuchung.
+    \item \textbf{Thematische Abgrenzung:} 
+    Die Arbeit konzentriert sich ausschließlich auf die Anreicherung von alphanumerischen 
+    Informationen (Properties/Attributes). Eine Korrektur von Modellgeometrien wird nicht 
+    betrachtet.
+    \item \textbf{Vollständige Prozessautomatisierung:} 
+    Der Fokus dieser Arbeit liegt primär auf der technischen Schnittstelle zwischen 
+    \gls{ids} und \gls{ifc}. Die Validität der anschließenden Mengenermittlung auf 
+    Basis \gls{ids}-konformer Modelle wird als Zielprozess vorausgesetzt. 
+    Eine vollumfängliche Prozessprüfung der kalkulatorischen Genauigkeit der Mengenermittlung 
+    findet nicht statt.    
+    \item \textbf{Software-Fokus:} 
+    Die Umsetzung erfolgt prototypisch auf Basis von Open-Source Technologien (IfcOpenShell). 
+    Eine Integration als Plug-in in kommerzielle Autorensoftware (z. B. Revit oder Archicad)
+    wird nicht durchgeführt.
+    \item \textbf{Phasen- und Geographische Abgrenzung:} 
+    Die Untersuchung beschränkt sich auf die Angebotsphase im Hochbau unter Berücksichtigung 
+    der im österreichischen Raum üblichen Austauschstandards.
 \end{itemize}
 
 \subsection{Grenzen und weitere Forschung}
-Aufgrund der Wahl einer technischen Evaluation (\textit{Technical Risk \& Efficacy}) ist die Generalisierbarkeit auf die menschliche Interaktion eingeschränkt \cite{venable2016feds}. Zukünftige Forschungsarbeiten könnten darauf aufbauen, indem KI-gestützte Ansätze zur automatisierten Zuordnung von \gls{ids}-Anforderungen integriert werden oder die Skalierbarkeit des Ansatzes auf Großprojekte und weitere Lebenszyklusphasen wie das Facility Management untersucht wird.
-
-% DONE, need to adapt wording and check lit
+Aufgrund der Wahl einer technischen Evaluation (\textit{Technical Risk \& Efficacy}) ist 
+die Generalisierbarkeit auf die menschliche Interaktion eingeschränkt \cite{venable2016feds}. 
+Zukünftige Forschungsarbeiten könnten darauf aufbauen, indem KI-gestützte Ansätze zur 
+automatisierten Zuordnung von \gls{ids}-Anforderungen integriert werden oder die Skalierbarkeit 
+des Ansatzes auf Großprojekte und weitere Lebenszyklusphasen wie das Facility Management 
+untersucht wird. Ergänzend bleibt festzuhalten, dass die Wirksamkeit des entwickelten Artefakts 
+in der Praxis eng an die Verbreitung von \gls{ids}-basierten Workflows und die Qualität der 
+Modellgeometrien geknüpft ist.
