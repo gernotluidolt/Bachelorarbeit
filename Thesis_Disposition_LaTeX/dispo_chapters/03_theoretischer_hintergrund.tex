@@ -4,7 +4,7 @@
 \subsection{Grundlagen des BIM}
 
 Das Fundament der Digitalisierung in der Bauwirtschaft bildet die Methode \gls{bim}. 
-Nach \cite{borrmann2015building} ist dabei zwischen dem \textit{Model} als „umfassendes digitales Abbild“ 
+Nach \cite{borrmann2015building} ist dabei zwischen dem \textit{Model} als \glqq umfassendes digitales Abbild\grqq\ 
 und dem \textit{Modeling} als Prozess der Erstellung und Verwaltung zu differenzieren. 
 Ein zentrales Merkmal ist die Integration nicht-geometrischer Zusatzinformationen 
 (z. B. technische Eigenschaften, Kosten) in einen objektorientierten, digitalen Zwilling \cite{borrmann2015building}.
@@ -76,7 +76,7 @@ Für die im Rahmen dieser Arbeit angestrebte Modellanreicherung ist die Differen
 \subsection{Information Delivery Specification (IDS)}
 \label{subsec:ids}
 
-Die \textit{Information Delivery Specification} (\gls{ids}) ist ein von buildingSMART International entwickelter Standard zur maschinenlesbaren Definition von Informationsanforderungen in \gls{bim}-Projekten \cite{buildingsmartIds}. Im Gegensatz zu herkömmlichen, oft unstrukturierten Anforderungen in Excel-Tabellen fungiert die \gls{ids} als „digitaler Vertrag“, der präzise festlegt, welche Daten zu welchem Zeitpunkt in einem \gls{ifc}-Modell vorhanden sein müssen \cite{eichler2024bimcert}.
+Die \textit{Information Delivery Specification} (\gls{ids}) ist ein von buildingSMART International entwickelter Standard zur maschinenlesbaren Definition von Informationsanforderungen in \gls{bim}-Projekten \cite{buildingsmartIds}. Im Gegensatz zu herkömmlichen, oft unstrukturierten Anforderungen in Excel-Tabellen fungiert die \gls{ids} als \glqq digitaler Vertrag\grqq, der präzise festlegt, welche Daten zu welchem Zeitpunkt in einem \gls{ifc}-Modell vorhanden sein müssen \cite{eichler2024bimcert}.
 
 \subsubsection{Logische Struktur: Applicability und Requirements}
 Die funktionale Logik einer \gls{ids}-Spezifikation basiert auf einer klaren Trennung zwischen der Auswahl der Objekte und den an sie gestellten Forderungen:
@@ -122,6 +122,6 @@ Durch die Nutzung von Bonsai als Grundlage entfällt die Notwendigkeit, eine vol
 
 \subsection{Derzeitige Forschungslücken}
 
-Aktuelle Forschungen zum Einsatz von \gls{ids}, wie die von \cite{kladz2025ids}, fokussieren sich primär auf die reine Validierung, also das „Quality Checking“ von Modellen, um deren Konformität sicherzustellen. Die passive Anwendung dieser Spezifikationen – gleichsam als „Test-Orakel“ für die Prüfung – ist weitgehend etabliert. Ein Forschungsmanko besteht jedoch in der aktiven Nutzung dieser standardisierten Maschinenlesbarkeit, insbesondere für die automatisierte Ergänzung fehlender oder unvollständiger Daten in der Planungsphase von Bauprojekten. Wie \cite{de2024enriching} betonen, besitzt \gls{ids} das Potenzial, über die reine Validierung hinaus zur „Modellanreicherung“ (Enrichment) beizutragen. Konkrete Implementierungen oder methodische Ansätze, die speziell auf die Anforderungen von Bauunternehmen in der Angebotsphase zugeschnitten sind, fehlen jedoch weitgehend.
+Aktuelle Forschungen zum Einsatz von \gls{ids}, wie die von \cite{kladz2025ids}, fokussieren sich primär auf die reine Validierung, also das \glqq Quality Checking\grqq\ von Modellen, um deren Konformität sicherzustellen. Die passive Anwendung dieser Spezifikationen – gleichsam als \glqq Test-Orakel\grqq\ für die Prüfung – ist weitgehend etabliert. Ein Forschungsmanko besteht jedoch in der aktiven Nutzung dieser standardisierten Maschinenlesbarkeit, insbesondere für die automatisierte Ergänzung fehlender oder unvollständiger Daten in der Planungsphase von Bauprojekten. Wie \cite{de2024enriching} betonen, besitzt \gls{ids} das Potenzial, über die reine Validierung hinaus zur \glqq Modellanreicherung\grqq\ (Enrichment) beizutragen. Konkrete Implementierungen oder methodische Ansätze, die speziell auf die Anforderungen von Bauunternehmen in der Angebotsphase zugeschnitten sind, fehlen jedoch weitgehend.
 
 Diese Arbeit setzt hier an, indem sie aufzeigt, wie offene Standards (\gls{ids}, \gls{ifc}) und Open-Source-Technologien (IfcOpenShell, Bonsai) kombiniert werden können, um eine durchgängige, transparente und praxisnahe Anreicherungslösung zu realisieren.
