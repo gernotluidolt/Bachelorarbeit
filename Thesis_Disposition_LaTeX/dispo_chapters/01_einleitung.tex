@@ -1,37 +1,36 @@
 \section{Einleitung}
 \label{sec:intro}
 
-Die Digitalisierung der Bauwirtschaft, getrieben durch die \gls{bim} Methode, verspricht eine durchgängige und effiziente Nutzung von Bauwerksdaten über den gesamten Lebenszyklus \cite{borrmann2015building}. 
-Idealbilder skizzieren einen nahtlosen Informationsfluss, bei dem digitale Zwillinge von der ersten Entwurfsskizze bis zum Rückbau als zentrale Datenquelle dienen. Die Realität in der bauausführenden Praxis, 
-insbesondere an der Schnittstelle zwischen Planung und Angebotserstellung, weicht jedoch oft von diesem Ideal ab \cite{sacks2018bim, borrmann2015building}.
+Die Digitalisierung der Bauwirtschaft, getrieben durch die \gls{bim} Methode, verspricht eine durchgängige und 
+effiziente Nutzung von Bauwerksdaten über den gesamten Lebenszyklus. 
+Das Idealbild ist der nahtlose Informationsfluss, bei dem das Modell von der ersten Entwurfsskizze bis zum Rückbau 
+als zentrale Datenquelle dient. Die Realität in der bauausführenden Praxis, 
+insbesondere an der Schnittstelle zwischen Planung und Angebotserstellung, weicht jedoch oft von diesem 
+Ideal ab \cite{sacks2018bim, borrmann2015building}.
 
 \subsection{Forschungsthema und Kontext}
 In der Phase der Angebotserstellung stehen Bauunternehmen vor der Herausforderung, 
-auf Basis der vom Planer übermittelten Modelle präzise Mengen und Kosten zu ermitteln. 
-Die Erfahrung zeigt, dass diese Modelle primär für genehmigungsrechtliche oder gestalterische 
-Zwecke optimiert sind und selten die für eine automatisierte Kalkulation erforderliche 
-Datentiefe (\textit{Level of Information Need}) aufweisen \cite{borrmann2015building, sacks2018bim, abualdenien2022levels}. 
+Mengen und Kosten auf Basis der vom Planer übermittelten Informationen zu ermitteln. 
+Die Erfahrung zeigt, dass Modelle in der Planungsphase primär für genehmigungsrechtliche oder gestalterische 
+Zwecke erstellt sind und selten über die für das Bauunternehmen erforderlichen 
+Informationen verfügen \cite{sacks2018bim, borrmann2015building, abualdenien2022levels}. 
 Es existiert eine Diskrepanz zwischen den gelieferten und den benötigten Informationen. 
 Während die Geometrie oft ausreichend definiert ist, fehlen häufig spezifische alphanumerische 
-Attribute oder sie sind nicht normgerecht strukturiert, was eine direkte Weiterverarbeitung 
-verhindert \cite{borrmann2015building,sacks2018bim}.
+Attribute was eine direkte Weiterverarbeitung verhindert \cite{sacks2018bim,borrmann2015building}.
 
 \subsection{Wissenschaftliche Relevanz}
-Zur Standardisierung von Informationsanforderungen hat buildingSMART den Standard \gls{ids} entwickelt. 
-Der aktuelle Stand der Forschung und Technik betrachtet \gls{ids} primär als Instrument zur Validierung, 
-also zur passiven Prüfung, ob ein Modell den Anforderungen entspricht \cite{kladz2025ids,eichler2024bimcert,buildingsmartIds}. 
-Das Potenzial von \gls{ids}, nicht nur als \glqq Prüfstein\grqq, sondern als aktive \glqq Bauleitung\grqq\ für 
-die Datenanreicherung genutzt zu werden, ist bisher jedoch kaum erforscht, wobei \cite{kladz2025ids, de2024enriching, amer20235d} Potenzial 
-in einer solchen Arbeitsweise sehen. Diese Arbeit adressiert diese Lücke, indem sie 
-untersucht, wie maschinenlesbare Anforderungen genutzt werden können, um \gls{ifc}-Modelle 
-um die fehlenden Informationen anzureichern.
+Zur Standardisierung von Informationsanforderungen hat buildingSMART den Standard \gls{ids} entwickelt, 
+welcher das openBIM-Ökosystem rund um \gls{ifc}-Modelle erweitert \cite{eichler2024bimcert}. 
+Der aktuelle Stand der Forschung und Praxis betrachtet \gls{ids} dabei primär als Instrument zur Validierung, 
+also zur passiven Prüfung, ob ein Modell den Anforderungen entspricht \cite{eichler2024bimcert,kladz2025ids,buildingsmartIds}. 
+Das Potenzial von \gls{ids}, nicht nur als Validierungsgrundlage, sondern als aktive Datenquelle für 
+die Informationsanreicherung von Modellen genutzt zu werden, ist bisher jedoch kaum erforscht, wobei 
+\cite{kladz2025ids, de2024enriching, amer20235d} Potenzial in einer solchen Arbeitsweise sehen. 
+Diese Arbeit adressiert diese Lücke, indem sie untersucht, wie Anforderungen aus der \gls{ids} genutzt 
+werden können, um eine Datenanreicherung von \gls{ifc}-Modellen durchzuführen.
 
-
-\subsection{Ziele der Arbeit}
-Das zentrale Ziel dieser Bachelorarbeit ist der Nachweis der technischen Machbarkeit einer \gls{ids}-gestützten 
-Modellanreicherung. Es soll ein Software-Prototyp entwickelt werden, der Fachanwender:innen befähigt, spezifische 
-Informationsanforderungen, welche in Form einer \gls{ids} Vorhanden sind auf unvollständige \gls{ifc}-Modelle anzuwenden. 
-Das Ergebnis ist ein angereichertes Modell, welches für die Mengenermittlung genutzt werden kann. 
-Damit soll gezeigt werden, dass der offene Standard \gls{ids} einen aktiven Beitrag zur 
-Schließung der Lücke zwischen Planung und Kalkulation leisten kann, der über die Validierung 
-der Datenqualität hinaus geht.
+Das zentrale Ziel dieser Arbeit ist der Nachweis der technischen Machbarkeit einer 
+\gls{ids}-basierten Modellanreicherung. Es soll gezeigt werden, dass \gls{ids} über die reine 
+Validierungsfunktion hinaus als Datenquelle dienen kann, um IFC-Modelle mit den für die Mengenermittlung 
+erforderlichen Informationen zu ergänzen. Der Fokus liegt dabei auf der Erreichung der Modellkonformität, die 
+mittels einer Delta-Analyse nachgewiesen wird.

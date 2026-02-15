@@ -10,46 +10,46 @@ Prozessoptimierung in der Angebotsphase.
 Der angestrebte wissenschaftliche Beitrag dieser Arbeit liegt in dem Nachweis, dass 
 die \gls{ids} als Datenquelle eingesetzt werden kann, um die Nachbearbeitung von 
 \gls{ifc}-Modellen zu unterstützen und das dieser Prozess technisch möglich ist. 
-Durch die Entwicklung und Evaluation des Prototyps wird aufgezeigt, wie die Modellkonformität 
-für die anschließende modellbasierte automatische Mengenermittlung verbessert werden kann. 
-Damit liefert die Arbeit sowohl ein technisches Artefakt als auch methodische Erkenntnisse 
-zur Anwendung von Design Science Research im Kontext des Bauwesens.
+Durch die Entwicklung und Evaluation des Prototyps wird aufgezeigt, wie die Datentiefe des Modells 
+für die anschließende Mengenermittlung verbessert werden kann. 
+Damit liefert die Arbeit sowohl ein technisches Artefakt als auch methodische Erkenntnisse.
 
 \subsection{Abgrenzung der Forschung}
 Um den Fokus der Untersuchung zu schärfen und den Umfang der Arbeit einzugrenzen, werden 
 folgende Aspekte explizit abgegrenzt:
 
 \begin{itemize}
-    \item \textbf{Fachliche Datenhoheit:} 
+    \item \textbf{Fachliche Abgrenzung:} \\
     Der Prototyp stellt die technische Infrastruktur zur Anreicherung bereit. 
     Die inhaltliche Verantwortung (z. B. die korrekte fachliche Zuweisung von Attributen 
     zu Bauteilen durch den Anwender) verbleibt beim Menschen. Eine bautechnische 
-    Plausibilitätsprüfung der zugewiesenen Werte ist nicht Gegenstand der Untersuchung.
-    \item \textbf{Thematische Abgrenzung:} 
+    Plausibilitätsprüfung der zugewiesenen Werte findet nicht statt.
+    \item \textbf{Thematische Abgrenzung:} \\
     Die Arbeit konzentriert sich ausschließlich auf die Anreicherung von alphanumerischen 
     Informationen (Properties/Attributes). Eine Korrektur von Modellgeometrien wird nicht 
     betrachtet.
-    \item \textbf{Vollständige Prozessautomatisierung:} 
-    Der Fokus dieser Arbeit liegt primär auf der technischen Schnittstelle zwischen 
+    \item \textbf{Vollständige Prozessautomatisierung:} \\
+    Der Fokus dieser Arbeit liegt auf der technischen Schnittstelle zwischen 
     \gls{ids} und \gls{ifc}. Die Validität der anschließenden Mengenermittlung auf 
     Basis \gls{ids}-konformer Modelle wird als Zielprozess vorausgesetzt. 
-    Eine vollumfängliche Prozessprüfung der kalkulatorischen Genauigkeit der Mengenermittlung 
-    findet nicht statt.    
-    \item \textbf{Software-Fokus:} 
-    Die Umsetzung erfolgt prototypisch auf Basis von Open-Source Technologien (IfcOpenShell). 
-    Eine Integration als Plug-in in kommerzielle Autorensoftware (z. B. Revit oder Archicad)
-    wird nicht durchgeführt.
-    \item \textbf{Phasen- und Geographische Abgrenzung:} 
+    \item \textbf{Software:} \\
+    Die Umsetzung erfolgt prototypisch auf Basis von Open-Source Technologien. 
+    Eine Integration in kommerzielle Autorensoftware wird nicht durchgeführt.
+    \item \textbf{Phasen- und Geographische Abgrenzung:} \\
     Die Untersuchung beschränkt sich auf die Angebotsphase im Hochbau unter Berücksichtigung 
-    der im österreichischen Raum üblichen Austauschstandards.
+    der im österreichischen Raum üblichen Anforderungen.
 \end{itemize}
 
 \subsection{Grenzen und weitere Forschung}
-Aufgrund der Wahl einer technischen Evaluation (\textit{Technical Risk \& Efficacy}) ist 
-die Generalisierbarkeit auf die menschliche Interaktion eingeschränkt \cite{venable2016feds}. 
-Zukünftige Forschungsarbeiten könnten darauf aufbauen, indem KI-gestützte Ansätze zur 
-automatisierten Zuordnung von \gls{ids}-Anforderungen integriert werden oder die Skalierbarkeit 
-des Ansatzes auf Großprojekte und weitere Lebenszyklusphasen wie das Facility Management 
-untersucht wird. Ergänzend bleibt festzuhalten, dass die Wirksamkeit des entwickelten Artefakts 
-in der Praxis eng an die Verbreitung von \gls{ids}-basierten Workflows und die Qualität der 
-Modellgeometrien geknüpft ist.
+Eine Analyse wie Fachanwender:innen durch den Prozess der Modellanreicherung geführt werden können, 
+ist im Rahmen dieser primär technisch orientierten Arbeit nicht vorgesehen und bietet Raum für zukünftige 
+Usability-Studien zur Gestaltung intuitiver Benutzeroberflächen. 
+Zukünftige Forschungsarbeiten könnten darauf aufbauen, indem KI-gestützte Ansätze zur automatisierten 
+Zuordnung von \gls{ids}-Anforderungen integriert werden oder die Skalierbarkeit des Ansatzes auf 
+weitere Lebenszyklusphasen oder den Tiefbau untersucht wird. Darüber hinaus könnten zukünftige Untersuchungen 
+das Potenzial von IDS als operative Datengrundlage für weitere Anwendungsfälle analysieren. Beispielsweise 
+könnte IDS nicht nur zur nachträglichen Anreicherung, sondern bereits als Modellierungshilfe eingesetzt 
+werden, um Anwender:innen schon während der Geometrieerstellung aktiv bei der korrekten Attributierung zu unterstützen. 
+Ergänzend bleibt festzuhalten, dass die Wirksamkeit des entwickelten Artefakts in der Praxis eng an die 
+Verbreitung von \gls{ids}-basierten Workflows, der Qualität der Modellgeometrien und der in \gls{ids} 
+definierten Anforderungen geknüpft ist.

@@ -1,6 +1,6 @@
 \section{Forschungsmethodik}
 
-Die vorliegende Arbeit folgt der \textit{Design Science Research} (DSR) Methodik, 
+Die vorliegende Arbeit folgt der „Design Science Research“ (DSR) Methodik, 
 welche die Entwicklung und Evaluation von Artefakten zur Lösung der 
 identifizierten Problemstellungen behandelt \cite{peffers2007design}. 
 Der Mehrwert dieser Methodik liegt dabei nicht nur in der praktischen 
@@ -10,35 +10,42 @@ Für die Durchführung wird ein Vorgehensmodell genutzt, welches sechs Prozessph
 vorsieht.
 
 \subsection{Die sechs Prozessphasen}
-Der Ablauf der Arbeit teilt sich in folgende Phasen auf, welche von \cite{peffers2007design} definiert werden:
+Der Ablauf der Arbeit teilt sich in folgende Phasen auf, welche von \cite{peffers2007design} 
+definiert werden:
 
 \begin{enumerate}
     \item \textbf{Problemidentifizierung und Motivation:} \\
     Erst wird das Problem des \gls{bim}-Prozessbruchs in der Angebotsphase analysiert und der 
     Bedarf für Datenanreicherung von \gls{ifc}-Modellen begründet.
 
-    \item \textbf{Definition der Lösungsziele:} \\
+\item \textbf{Definition der Lösungsziele:} \\
     In dieser Phase werden die Anforderungen an den Prototyp festgelegt. Diese werden 
-    methodisch aus der Literaturanalyse (siehe \ref{subsec:problem}) sowie aus ergänzenden 
-    Experteninterviews mit Fachanwender:innen abgeleitet. 
-    Um die These im Rahmen einer Bachelorarbeit prüfbar zu machen, wird der \glqq Nutzen 
-    für Fachanwender:innen\grqq\ primär über die funktionale Eignung definiert: Das Artefakt 
-    gilt als nützlich, wenn es die für die automatisierte Mengenermittlung erforderlichen 
-    Datenstrukturen fehlerfrei und \gls{ids}-konform bereitstellt.
+    aus der Literaturanalyse (\ref{subsec:problem}), sowie aus einer Analyse vorliegender 
+    \gls{ids}-Dateien abgeleitet. Um eine hohe praktische Relevanz zu erzielen, 
+    wird ein hybrider Datensatz als Anforderungsbasis verwendet:
+    \begin{itemize}
+        \item \textbf{Synthetische Referenzdaten:} \\
+        Offizielle Beispiel-\gls{ids} Dateien von buildingSMART \cite{sampleIDS}.
+        \item \textbf{Praxisdaten:} \\
+        Eine \gls{ids}-Datei aus der Baupraxis, um die im österreichischen Markt üblichen 
+        Informationsanforderungen zu repräsentieren.
+    \end{itemize}
 
     \item \textbf{Design und Entwicklung:} \\
-    Hier wird das technische Artefakt (der Python-Prototyp) entworfen und implementiert. 
-    Hierbei wird die Logik entwickelt, um \gls{ids}-Vorgaben automatisiert in 
+    Hier wird das technische Artefakt entworfen und implementiert. 
+    Dafür wird die Logik entwickelt, um \gls{ids}-Vorgaben in 
     \gls{ifc}-Attributwerte zu übersetzen.
 
+    \newpage
+
     \item \textbf{Demonstration:} \\
-    Die praktische Machbarkeit wird durch die Anwendung des Prototyps an einem Beispielprojekt 
+    Die Machbarkeit wird durch die Anwendung des Prototyps an einem Beispielprojekt 
     demonstriert, um zu zeigen, dass die \gls{ids}-gestützte Anreicherung technisch umsetzbar ist.
 
     \item \textbf{Evaluation:} \\
     Die Wirksamkeit des Artefakts wird systematisch überprüft, indem der Erfüllungsgrad der 
-    in Phase 2 definierten Anforderungen gemessen wird. Details hierzu werden im folgenden 
-    Abschnitt unter Anwendung des FEDS-Frameworks erläutert.
+    in Phase 2 definierten Anforderungen gemessen wird. Die in der Definitionsphase genutzten 
+    \gls{ids}-Dateien dienen hierbei als Test-Benchmarks (siehe \ref{subsec:evaluation}).
 
     \item \textbf{Kommunikation:} \\
     Die Ergebnisse der Arbeit werden dokumentiert und für Fachanwender sowie die 
@@ -47,25 +54,24 @@ Der Ablauf der Arbeit teilt sich in folgende Phasen auf, welche von \cite{peffer
 
 \subsection{Evaluationskonzept (FEDS)}
 \label{subsec:evaluation}
-Die Evaluation wird nach dem \textit{Framework for Evaluation in Design Science} (FEDS) gestaltet \cite{venable2016feds}. 
+Die Evaluation wird nach dem „Framework for Evaluation in Design Science“ (FEDS) 
+gestaltet.
 Um den Fokus auf die technische Machbarkeit zu legen, wird die Strategie 
-\glqq Technical Risk \& Efficacy\grqq gewählt \cite{venable2016feds}.
-Diese Strategie ist darauf ausgerichtet, die technische Wirksamkeit (\textit{Efficacy}) eines 
-Artefakts unter kontrollierten Bedingungen nachzuweisen, um fundamentale Designentscheidungen 
-zu validieren. 
+\glqq Technical Risk \& Efficacy\grqq gewählt.
+Diese Strategie ist darauf ausgerichtet, die technische Wirksamkeit eines 
+Artefakts unter kontrollierten Bedingungen nachzuweisen, um Designentscheidungen 
+zu validieren \cite{venable2016feds}. 
 
-Das Hauptrisiko der Arbeit liegt in der technischen Komplexität der \gls{ids}-Interpretation 
+Das Hauptrisiko der Arbeit liegt in der Komplexität der \gls{ids}-Interpretation 
 sowie der korrekten Manipulation des \gls{ifc}-Modells.  
-Die Evaluation prüft daher als primäres Erfolgskriterium die \gls{ids}-Konformitätsrate. 
-Die technische Wirksamkeit darzustellen ist eine zwingende Voraussetzung für den praktischen 
-Nutzen eines angereicherten IFC-Modells in der Angebotsphase. Es wird eine formative Evaluation 
-in einer kontrollierten Umgebung durchgeführt, wobei fünf reale \gls{ifc}-Modelle aus der 
-Baupraxis als Datengrundlage dienen.
+Die Evaluation prüft daher die \gls{ids}-Konformität als primäres Erfolgskriterium. 
+Die zur Anforderungsdefinition genutzten \gls{ids}-Dateien werden nun als Validierungsgrundlage 
+gegen drei \gls{ifc}-Modelle aus der Baupraxis getestet.
 
 Um eine objektive Prüfung der in Phase 2 festgelegten Ziele zu gewährleisten, wird der 
-bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte \textit{IfcTester} als 
+bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte IfcTester als 
 Validierungswerkzeug genutzt. Dabei wird die \gls{ids}-Konformität der Modelle im Rahmen einer 
-Delta-Analyse gegenübergestellt, welche den Zustand vor und nach der automatisierten Bearbeitung 
+Delta-Analyse gegenübergestellt, welche den Zustand der \gls{ifc}-Modelle vor und nach der Bearbeitung 
 vergleicht. Ein Testfall gilt als erfolgreich abgeschlossen, wenn der Prototyp die 
 spezifizierten \gls{ids}-Anforderungen in die \gls{ifc}-Datei überführt hat und diese 
-im anschließenden Validierungslauf des \textit{IfcTesters} als konform bestätigt werden.
+im anschließenden Validierungslauf des IfcTesters als konform bestätigt werden.
