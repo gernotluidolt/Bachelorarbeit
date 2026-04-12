@@ -6,11 +6,7 @@ In diesem Kapitel wird das methodische Vorgehen der vorliegenden Arbeit dargeleg
 
 Die vorliegende Arbeit folgt der „Design Science Research“ (DSR) Methodik, welche die Entwicklung und Evaluation von Artefakten zur Lösung der identifizierten Problemstellungen behandelt \cite{peffers2007design}. Der Mehrwert dieser Methodik liegt dabei nicht nur in der reinen praktischen Problemlösung, sondern vor allem auch in dem wissenschaftlichen Erkenntnisgewinn, den die systematische Analyse des entwickelten Artefakts generiert \cite{peffers2007design, hevner2004design}.
 
-% TODO: Ein kurzer Absatz, der DSR von anderen Methoden abgrenzt. 
-%       Warum machst du keine reine Fallstudie (Case Study) oder empirische Umfrage?
-% TODO: Weil dein Ziel nicht das reine Beobachten eines Zustands ist, 
-%       sondern die aktive Schaffung einer neuen Lösung (das Artefakt/der Prototyp) 
-%       für ein reales Praxisproblem.
+Im Gegensatz zu beobachtenden Forschungsansätzen wie reinen Fallstudien (Case Studies) oder empirischen Umfragen, die primär auf die Erfassung und Analyse bestehender Zustände abzielen, steht bei der DSR die aktive Problemlösung im Fokus. Da das Ziel dieser Arbeit nicht in der bloßen Untersuchung des \gls{bim}-Prozessbruchs besteht, sondern in der Entwicklung und Bereitstellung einer neuartigen Lösung in Form eines softwarebasierten Prototyps für ein reales Praxisproblem, erweist sich DSR als die am besten geeignete Methodik.
 
 \subsection{Der Forschungsprozess}
 
@@ -29,14 +25,14 @@ Für die Durchführung wird ein Vorgehensmodell genutzt, welches sechs Prozessph
 
     \item \textbf{Design und Entwicklung:} \\
     Hier wird das technische Artefakt entworfen und implementiert. Dafür wird die algorithmische Logik entwickelt, um \gls{ids}-Vorgaben in entsprechende \gls{ifc}-Attributwerte zu übersetzen.
-    % TODO Was noch fehlt: Du solltest hier schon grob anteasern, wie du das entwickelst. Nutzt du Python? Arbeitest du mit spezifischen Libraries wie IfcOpenShell? Wird es ein Standalone-Skript oder ein Plugin? Du musst hier noch keinen Code zeigen, aber der technologische Rahmen sollte abgesteckt werden.
+Die technische Umsetzung des Prototyps erfolgt in Form einer softwareseitigen Erweiterung für das Open-Source-Modellierungswerkzeug Blender. Die Programmierung der zugrunde liegenden Logik wird in Python realisiert, wobei die Bibliothek \glqq IfcOpenShell\grqq{} für die direkte Verarbeitung und Manipulation der \gls{ifc}-Modelldaten herangezogen wird. Zur visuellen Kontextualisierung und als grafische Schnittstelle dient das Blender-Add-on \glqq Bonsai\grqq{}. Durch die Nutzung der Blender Python API wird die entwickelte Anreicherungslogik in diese bestehende OpenBIM-Umgebung integriert.
 
     \item \textbf{Demonstration:} \\
     Die grundlegende Machbarkeit wird durch die Anwendung des Prototyps an einem Beispielprojekt demonstriert. Dies soll zeigen, dass die \gls{ids}-gestützte Anreicherung technisch umsetzbar ist.
 
     \item \textbf{Evaluation:} \\
     Die Wirksamkeit des Artefakts wird systematisch überprüft, indem der Erfüllungsgrad der in Phase 2 definierten Anforderungen gemessen wird. Die in der Definitionsphase genutzten \gls{ids}-Dateien dienen hierbei als Test-Benchmarks (siehe \ref{subsec:evaluation}).
-    % TODO: Was noch fehlt: Für die wissenschaftliche Nachvollziehbarkeit musst du diese Daten in der Arbeit genauer beschreiben. Sind das Hochbau-, Tiefbau- oder Infrastrukturprojekte? Welche Größe/Komplexität haben diese Modelle (z. B. Einfamilienhaus vs. Bürokomplex)? Welches "Level of Information Need" (LOIN) wird hier gefordert? Das kannst du im Methodikkapitel kurz anreißen und später im Evaluationskapitel im Detail beschreiben.
+    Die für diese Evaluation verwendeten \gls{ifc}-Modelle stammen aus dem realen Hochbau und umfassen komplexere Projekte wie größere Wohn- und Büroanlagen. Das geforderte \glqq Level of Information Need\grqq{} (LOIN) wird dabei primär durch die herangezogenen \gls{ids}-Vorgaben definiert. Ziel ist es, dass die Modelle durch die Anreicherung jene Datenstruktur und Informationsdichte aufweisen, die notwendig sind, um daraus weiterführende Prozesse wie eine Massenermittlung oder Kostenkalkulation abzuleiten. Eine detailliertere Beschreibung der Testdaten erfolgt in Kapitel \ref{subsec:evaluation}.
 
     \item \textbf{Kommunikation:} \\
     Die Ergebnisse der Arbeit werden abschließend dokumentiert und für Fachanwender sowie die wissenschaftliche Gemeinschaft aufbereitet.
@@ -45,11 +41,29 @@ Für die Durchführung wird ein Vorgehensmodell genutzt, welches sechs Prozessph
 \subsection{Evaluationskonzept (FEDS)}
 \label{subsec:evaluation}
 
-Die Evaluation wird nach dem „Framework for Evaluation in Design Science“ (FEDS) gestaltet. Um den Fokus auf die technische Machbarkeit des Prototyps zu legen, wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. Diese Strategie ist darauf ausgerichtet, die technische Wirksamkeit eines Artefakts unter kontrollierten Bedingungen nachzuweisen, um Designentscheidungen zu validieren \cite{venable2016feds}. 
+Die strategische Planung der Evaluation orientiert sich systematisch an dem „Framework for Evaluation in Design Science“ (FEDS) nach Venable et al. \cite{venable2016feds}. Dieses wissenschaftliche Framework sieht einen vierstufigen Entscheidungsprozess vor, der im Folgenden für den vorliegenden Prototyp angewandt wird:
 
-Das Hauptrisiko der vorliegenden Arbeit liegt in der Komplexität der \gls{ids}-Interpretation sowie der algorithmisch korrekten Manipulation des \gls{ifc}-Modells. Die Evaluation prüft daher die \gls{ids}-Konformität als primäres Erfolgskriterium. Die zur Anforderungsdefinition genutzten \gls{ids}-Dateien werden nun als Validierungsgrundlage gegen drei \gls{ifc}-Modelle aus der Baupraxis getestet.
+\textbf{Schritt 1: Explikation der Evaluierungsziele} \\
+Das primäre Ziel dieser Studie ist die rigorose Überprüfung der Wirksamkeit (Efficacy) des entwickelten Algorithmus in einem kontrollierten Laborumfeld \cite{venable2016feds}. Das wesentliche Risiko der Arbeit liegt in der informationstechnischen Komplexität hinsichtlich der korrekten \gls{ids}-Interpretation und der anschließenden algorithmischen Manipulation des \gls{ifc}-Modells (technisches Risiko). Soziale Unsicherheiten (Nutzerakzeptanz) oder ethische Risiken spielen in diesem fundamentalen technischen Machbarkeitsnachweis noch keine Rolle.
 
-Um eine objektive Prüfung der in Phase 2 festgelegten Ziele zu gewährleisten, wird der bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte IfcTester als Validierungswerkzeug genutzt. Dabei wird die \gls{ids}-Konformität der Modelle im Rahmen einer Delta-Analyse gegenübergestellt, welche den Zustand der \gls{ifc}-Modelle vor und nach der Bearbeitung vergleicht. Ein Testfall gilt als erfolgreich abgeschlossen, wenn der Prototyp die spezifizierten \gls{ids}-Anforderungen korrekt in die \gls{ifc}-Datei überführt hat und diese im anschließenden Validierungslauf des IfcTesters fehlerfrei als konform bestätigt werden.
+\textbf{Schritt 2: Auswahl der Evaluationsstrategie} \\
+Ausgehend von den in Schritt 1 definierten Heuristiken scheiden drei der vier möglichen FEDS-Strategien aus: Ein \glqq Quick \& Simple\grqq{}-Ansatz wird der geforderten methodischen Strenge für die \gls{ifc}-Datenmanipulation nicht gerecht. Die Strategie \glqq Human Risk \& Effectiveness\grqq{} scheidet aus, da diese Entwicklungsphase noch nicht auf reale Nutzerakzeptanz und Usability für Endanwender (z.\,B. Kalkulanten) abzielt. Auch der \glqq Purely Technical Artefact\grqq{}-Ansatz ist unpassend, da das Tool langfristig sehr wohl gezielt menschliche Arbeitsabläufe in der Praxis verändern soll. 
+Folglich wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. Der Fokus liegt bei dieser auf einer intensiven, künstlichen Evaluation unter kontrollierten Bedingungen, um zweifelsfrei nachzuweisen, dass Verbesserungen der Datenstruktur rein auf das technische Artefakt selbst zurückzuführen sind.
+
+\textbf{Schritt 3: Bestimmung der zu evaluierenden Eigenschaften} \\
+In Anlehnung an etablierte Qualitätsmodelle für Software (wie etwa die funktionale Eignung gemäß ISO/IEC 25010) wird der Fokus auf die \textit{funktionale Vollständigkeit} des Artefakts gelegt. Die wesentliche Evaluationsmetrik stützt sich dementsprechend auf die konzeptionelle Übersetzungsfähigkeit. Ein Testfall, und in weiterer Folge die Machbarkeitsstudie, gilt als erfolgreich, sofern nachgewiesen wird, dass sämtliche Informationsanforderungen und Datenstrukturen, die in einem regulären \gls{ids}-Dokument definiert werden können, vom Prototyp korrekt und abrufbar in das \gls{ifc}-Format überführt werden. Metriken zur reinen Ausführungseffizienz (wie etwa die Dauer des Skripts) bleiben hierbei zunächst zweitrangig.
+
+\textbf{Schritt 4: Design der Evaluations-Episoden} \\
+Die konkrete Umsetzung der so definierten Labor-Evaluation erfolgt im Rahmen einer summativen Delta-Analyse. Dabei dienen die in Phase 2 definierten \gls{ids}-Spezifikationen als Kontrollbasis, welche gegen die identifizierten \gls{ifc}-Praxismodelle getestet werden. Um die funktionale Umsetzung objektiv zu validieren, wird der bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte IfcTester im Rahmen des Bonsai-Ökosystems eingesetzt. Die Evaluation durchläuft eine kontrollierte Episode, an deren Ende der manipulierte \gls{ifc}-Zustand vom Validierungstool fehlerfrei als \gls{ids}-konform ausgewiesen werden muss.
+
+
+%%%
+
+%Die Evaluation wird nach dem „Framework for Evaluation in Design Science“ (FEDS) gestaltet. Um den Fokus auf die technische Machbarkeit des Prototyps zu legen, wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. Diese Strategie ist darauf ausgerichtet, die technische Wirksamkeit eines Artefakts unter kontrollierten Bedingungen nachzuweisen, um Designentscheidungen zu validieren \cite{venable2016feds}. 
+
+%Das Hauptrisiko der vorliegenden Arbeit liegt in der Komplexität der \gls{ids}-Interpretation sowie der algorithmisch korrekten Manipulation des \gls{ifc}-Modells. Die Evaluation prüft daher die \gls{ids}-Konformität als primäres Erfolgskriterium. Die zur Anforderungsdefinition genutzten \gls{ids}-Dateien werden nun als Validierungsgrundlage gegen drei \gls{ifc}-Modelle aus der Baupraxis getestet.
+
+%Um eine objektive Prüfung der in Phase 2 festgelegten Ziele zu gewährleisten, wird der bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte IfcTester als Validierungswerkzeug genutzt. Dabei wird die \gls{ids}-Konformität der Modelle im Rahmen einer Delta-Analyse gegenübergestellt, welche den Zustand der \gls{ifc}-Modelle vor und nach der Bearbeitung vergleicht. Ein Testfall gilt als erfolgreich abgeschlossen, wenn der Prototyp die spezifizierten \gls{ids}-Anforderungen korrekt in die \gls{ifc}-Datei überführt hat und diese im anschließenden Validierungslauf des IfcTesters fehlerfrei als konform bestätigt werden.
 
 % TODO: Was noch fehlt: Begründe kurz, warum die anderen FEDS-Strategien (z. B. Human Risk & Effectiveness) ausscheiden. Argument: Es geht in deiner Bachelorarbeit primär um den Nachweis der technischen Machbarkeit der IDS-IFC-Übersetzung und (noch) nicht darum, wie gut ein Endanwender (z. B. ein Kalkulant) das Tool in seinem Arbeitsalltag bedienen kann (Usability).
 
