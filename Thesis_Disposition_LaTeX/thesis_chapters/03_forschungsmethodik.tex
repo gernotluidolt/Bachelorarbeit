@@ -41,20 +41,53 @@ Die technische Umsetzung des Prototyps erfolgt in Form einer softwareseitigen Er
 \subsection{Evaluationskonzept (FEDS)}
 \label{subsec:evaluation}
 
-Die strategische Planung der Evaluation orientiert sich systematisch an dem „Framework for Evaluation in Design Science“ (FEDS) nach Venable et al. \cite{venable2016feds}. Dieses wissenschaftliche Framework sieht einen vierstufigen Entscheidungsprozess vor, der im Folgenden für den vorliegenden Prototyp angewandt wird:
+Die strategische Planung der Evaluation orientiert sich systematisch an dem 
+„Framework for Evaluation in Design Science“ (FEDS) \cite{venable2016feds}. 
+Dieses Framework sieht einen vierstufigen Prozess vor um eine geeignete 
+Evaluierungsstrategie zu wählen. Dieser wird im Folgenden für den vorliegenden 
+Prototyp angewandt:
 
-\textbf{Schritt 1: Explikation der Evaluierungsziele} \\
-Das primäre Ziel dieser Studie ist die rigorose Überprüfung der Wirksamkeit (Efficacy) des entwickelten Algorithmus in einem kontrollierten Laborumfeld \cite{venable2016feds}. Das wesentliche Risiko der Arbeit liegt in der informationstechnischen Komplexität hinsichtlich der korrekten \gls{ids}-Interpretation und der anschließenden algorithmischen Manipulation des \gls{ifc}-Modells (technisches Risiko). Soziale Unsicherheiten (Nutzerakzeptanz) oder ethische Risiken spielen in diesem fundamentalen technischen Machbarkeitsnachweis noch keine Rolle.
+\textbf{Schritt 1: Evaluierungsziele definieren} \\
+Das primäre Ziel dieser Studie ist die Überprüfung der Wirksamkeit des entwickelten 
+Algorithmus in einem kontrollierten Umfeld \cite{venable2016feds}. 
+Das wesentliche Risiko der Arbeit liegt in der Komplexität hinsichtlich der korrekten 
+\gls{ids}-Interpretation und der anschließenden Manipulation des \gls{ifc}-Modells 
+(technisches Risiko). 
 
 \textbf{Schritt 2: Auswahl der Evaluationsstrategie} \\
-Ausgehend von den in Schritt 1 definierten Heuristiken scheiden drei der vier möglichen FEDS-Strategien aus: Ein \glqq Quick \& Simple\grqq{}-Ansatz wird der geforderten methodischen Strenge für die \gls{ifc}-Datenmanipulation nicht gerecht. Die Strategie \glqq Human Risk \& Effectiveness\grqq{} scheidet aus, da diese Entwicklungsphase noch nicht auf reale Nutzerakzeptanz und Usability für Endanwender (z.\,B. Kalkulanten) abzielt. Auch der \glqq Purely Technical Artefact\grqq{}-Ansatz ist unpassend, da das Tool langfristig sehr wohl gezielt menschliche Arbeitsabläufe in der Praxis verändern soll. 
-Folglich wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. Der Fokus liegt bei dieser auf einer intensiven, künstlichen Evaluation unter kontrollierten Bedingungen, um zweifelsfrei nachzuweisen, dass Verbesserungen der Datenstruktur rein auf das technische Artefakt selbst zurückzuführen sind.
+Ausgehend von den in Schritt 1 definierten Heuristiken scheiden drei der vier 
+möglichen FEDS-Strategien aus: Ein \glqq Quick \& Simple\grqq{}-Ansatz wird der 
+geforderten methodischen Strenge für die \gls{ifc}-Datenmanipulation nicht gerecht. 
+Die Strategie \glqq Human Risk \& Effectiveness\grqq{} scheidet aus, da diese 
+Entwicklungsphase noch nicht auf reale Nutzerakzeptanz und Usability für Endanwender 
+(z.\,B. Kalkulanten) abzielt. Auch der \glqq Purely Technical Artefact\grqq{}-Ansatz 
+ist unpassend, da das Tool langfristig sehr wohl gezielt menschliche Arbeitsabläufe 
+in der Praxis verändern soll. 
+Folglich wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. 
+Der Fokus liegt bei dieser auf einer intensiven, künstlichen Evaluation unter 
+kontrollierten Bedingungen, um nachzuweisen, dass die benötigten Verbesserungen der 
+Datenstruktur rein auf das technische Artefakt selbst zurückzuführen sind.
 
 \textbf{Schritt 3: Bestimmung der zu evaluierenden Eigenschaften} \\
-In Anlehnung an etablierte Qualitätsmodelle für Software (wie etwa die funktionale Eignung gemäß ISO/IEC 25010) wird der Fokus auf die \textit{funktionale Vollständigkeit} des Artefakts gelegt. Die wesentliche Evaluationsmetrik stützt sich dementsprechend auf die konzeptionelle Übersetzungsfähigkeit. Ein Testfall, und in weiterer Folge die Machbarkeitsstudie, gilt als erfolgreich, sofern nachgewiesen wird, dass sämtliche Informationsanforderungen und Datenstrukturen, die in einem regulären \gls{ids}-Dokument definiert werden können, vom Prototyp korrekt und abrufbar in das \gls{ifc}-Format überführt werden. Metriken zur reinen Ausführungseffizienz (wie etwa die Dauer des Skripts) bleiben hierbei zunächst zweitrangig.
+Die wesentliche Evaluationsmetrik stützt sich dementsprechend auf die konzeptionelle 
+Übersetzungsfähigkeit. Ein Testfall gilt als erfolgreich, sofern nachgewiesen wird, 
+dass jede Spezifikation aus der IDS auf jede Art der im Ifc gegebenen Elementtypen
+angewandt werden kann. Somit wird sichergestellt, dass selbst bei unzureichenden Startbedingungen oder 
+verfälschten Startbedingungen letztendlich jedes Element in einen zufriedenstellenden 
+Zustand überführt werden kann ohne dass die tatsächliche Bautechnische Korrektheit 
+der Anreicherung im Rahmen dieser Arbeit eine Rolle spielt. 
 
-\textbf{Schritt 4: Design der Evaluations-Episoden} \\
-Die konkrete Umsetzung der so definierten Labor-Evaluation erfolgt im Rahmen einer summativen Delta-Analyse. Dabei dienen die in Phase 2 definierten \gls{ids}-Spezifikationen als Kontrollbasis, welche gegen die identifizierten \gls{ifc}-Praxismodelle getestet werden. Um die funktionale Umsetzung objektiv zu validieren, wird der bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte IfcTester im Rahmen des Bonsai-Ökosystems eingesetzt. Die Evaluation durchläuft eine kontrollierte Episode, an deren Ende der manipulierte \gls{ifc}-Zustand vom Validierungstool fehlerfrei als \gls{ids}-konform ausgewiesen werden muss.
+\textbf{Schritt 4: Design der Evaluationsphase} \\
+Die konkrete Umsetzung der so definierten Evaluation erfolgt im Rahmen einer 
+Delta-Analyse. Dabei dienen die in Phase 2 definierten \gls{ids}-Spezifikationen als 
+Kontrollbasis, welche gegen die identifizierten \gls{ifc}-Praxismodelle getestet 
+werden. Um die funktionale Umsetzung ZU validieren, wird der bereits in Kapitel 
+\ref{subsec:ifcopenshell} vorgestellte IfcTester im Rahmen des Bonsai-Ökosystems 
+eingesetzt. 
+In jedem der betrachteten \gls{ifc}-Modelle wird je ein 
+Die Evaluation durchläuft eine kontrollierte Episode, an deren Ende der 
+manipulierte \gls{ifc}-Zustand vom Validierungstool fehlerfrei als \gls{ids}-konform 
+ausgewiesen werden muss.
 
 
 %%%
@@ -68,3 +101,10 @@ Die konkrete Umsetzung der so definierten Labor-Evaluation erfolgt im Rahmen ein
 % TODO: Was noch fehlt: Begründe kurz, warum die anderen FEDS-Strategien (z. B. Human Risk & Effectiveness) ausscheiden. Argument: Es geht in deiner Bachelorarbeit primär um den Nachweis der technischen Machbarkeit der IDS-IFC-Übersetzung und (noch) nicht darum, wie gut ein Endanwender (z. B. ein Kalkulant) das Tool in seinem Arbeitsalltag bedienen kann (Usability).
 
 % TODO: Metriken definieren: Wie genau wird gemessen? Ist ein Testfall nur bestanden ("Pass") oder nicht bestanden ("Fail")? Oder misst du auch Dinge wie Performance (Dauer des Skripts) oder die Anzahl der erfolgreich angereicherten Attribute in Prozent?
+
+% **Spezifikationen der IDS etwas zweckentfremdet, eher als Pool möglicher Informationsträgern, wobei nicht alle davon in jedem Projekt/jeder Auswertung nötig werden.**
+% **Im Rahmen der Evaluierung wird also nachgewiesen dass jede Spezifikation aus der IDS auf jedes gegebene Element der IFC angewandt werden könnte. Somit wird sichergestellt, dass selbst bei unzureichenden Startbedingungen oder verfälschten Startbedingungen letztendlich jedes Element in einen zufriedenstellenden Zustand überführt werden kann.**
+% 1. Feststellen aller Ausprägungen eines IfcElement allen betrachteten Modellen (z.b. IfcWall, IfcBeam, IfcSlab...)
+% 2. Jede Spezifikation des IDS einmal auf ein Exemplar jedes IfcElement-Types anwenden
+% 3. Learning: wenn aus jede Spezifikation auf jedes Element angewandt werden kann, dann gilt die Annahme, dass jede gewünschte Anreicherungen/Modifikation des Modells möglich ist.
+% 4. Dies wird bewiesen durch den IfcTester. Nach jeder Zuweisung einer Spezifikation auf ein Element wird der IfcTester ausgeführt. Ist der Tester für dieses Element und diese Spezifikation zufridengestellt gibt diese Betrachtung als erfolgreich. Dargestellt wird anschließend eine Matrix mit Zeile IfcElement Typen und Spalte Spezifikationen
