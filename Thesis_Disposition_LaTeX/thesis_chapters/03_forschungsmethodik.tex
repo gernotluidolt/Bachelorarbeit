@@ -14,28 +14,56 @@ Für die Durchführung wird ein Vorgehensmodell genutzt, welches sechs Prozessph
 
 \begin{enumerate}
     \item \textbf{Problemidentifizierung und Motivation:} \\
-    Zunächst wird das Problem des \gls{bim}-Prozessbruchs in der Angebotsphase analysiert und der Bedarf für die Datenanreicherung von \gls{ifc}-Modellen wissenschaftlich und praktisch begründet.
+    Zunächst wird das Problem des \gls{bim}-Prozessbruchs in der Angebotsphase analysiert und der Bedarf für die Datenanreicherung von \gls{ifc}-Modellen begründet.
 
     \item \textbf{Definition der Lösungsziele:} \\
-    In dieser Phase werden die funktionalen Anforderungen an den Prototyp festgelegt. Diese werden aus der Literaturanalyse (\ref{subsec:problem}) sowie aus einer Analyse vorliegender \gls{ids}-Dateien abgeleitet. Um eine hohe praktische Relevanz zu erzielen, wird ein hybrider Datensatz als Anforderungsbasis verwendet:
-    \begin{itemize}
-        \item \textbf{Synthetische Referenzdaten:} Offizielle Beispiel-\gls{ids} Dateien von buildingSMART \cite{sampleIDS}.
-        \item \textbf{Praxisdaten:} Eine \gls{ids}-Datei aus der Baupraxis, um die im österreichischen Markt üblichen Informationsanforderungen zu repräsentieren.
-    \end{itemize}
+    In dieser Phase werden die funktionalen Anforderungen an den Prototyp festgelegt. 
+    Um eine vollständige Abdeckung der im \gls{ids}-Standard vorgesehenen Funktionalitäten 
+    zu gewährleisten, wird ein \textbf{synthetischer Anforderungskatalog} erstellt. 
+    Dieser besteht aus einer \gls{ids}-Referenzdatei, welche für jeden Subtyp des 
+    \texttt{IfcBuildingElement} eine Spezifikation enthält. Jede dieser Spezifikationen 
+    umfasst alle sechs im \gls{ids}-Standard vorgesehenen Prüffacetten: 
+    \textit{Entities}, \textit{Attributes}, \textit{Properties}, \textit{Classifications}, 
+    \textit{Materials} und \textit{PartOf}-Relationen. Dies stellt sicher, dass der Prototyp 
+    gegen die maximal mögliche Anforderungstiefe des Standards geprüft wird.
 
     \item \textbf{Design und Entwicklung:} \\
-    Hier wird das technische Artefakt entworfen und implementiert. Dafür wird die algorithmische Logik entwickelt, um \gls{ids}-Vorgaben in entsprechende \gls{ifc}-Attributwerte zu übersetzen.
-Die technische Umsetzung des Prototyps erfolgt in Form einer softwareseitigen Erweiterung für das Open-Source-Modellierungswerkzeug Blender. Die Programmierung der zugrunde liegenden Logik wird in Python realisiert, wobei die Bibliothek \glqq IfcOpenShell\grqq{} für die direkte Verarbeitung und Manipulation der \gls{ifc}-Modelldaten herangezogen wird. Zur visuellen Kontextualisierung und als grafische Schnittstelle dient das Blender-Add-on \glqq Bonsai\grqq{}. Durch die Nutzung der Blender Python API wird die entwickelte Anreicherungslogik in diese bestehende OpenBIM-Umgebung integriert.
+    Hier wird das technische Artefakt entworfen und implementiert. Der Kern des Prototyps 
+    basiert auf einer algorithmischen Transformation von \gls{ids}-Spezifikationen in 
+    \gls{ifc}-Schreibbefehle. Der Logikfluss gliedert sich in folgende Teilschritte:
+    \begin{enumerate}[label=\alph*)]
+        \item \textbf{Parsing:} Einlesen der \gls{ids}-XML-Struktur, um Anforderungen und deren Ausprägungen zu extrahieren.
+        \item \textbf{Selektion:} Bestimmung der Ziel-Elemente.
+        \item \textbf{Abgleich:} Systematische Prüfung der vorhandenen Modell-Datenstruktur auf fehlende oder abweichende Anforderungen im Vergleich zum \gls{ids}-Soll-Zustand.
+        \item \textbf{Transformation:} Erzeugung fehlender Datenstrukturen sowie die Zuweisung der \gls{ids}-Werte als Platzhalter.
+        \item \textbf{Serialisierung:} Speicherung des angereicherten \gls{ifc}-Modells.
+    \end{enumerate}
+    Der Schritt \textbf{b) Selektion} variiert kontextabhängig: Während in der Praxisanwendung eine benutzerdefinierte Auswahl der zu bearbeitenden Elemente erfolgt (siehe Phase~4), wird in der Evaluationsumgebung eine systematische Paarkombination aus allen Spezifikationen und Elementtypen vollzogen (siehe Phase~5). 
+    \\
+    Die technische Umsetzung erfolgt in Python unter Nutzung der Bibliothek \glqq IfcOpenShell\grqq{} 
+    und basiert auf dem \gls{ifc}4-Standard. Die Wahl von \gls{ifc}4 stellt sicher, dass alle Datentypen 
+    des aktuellen ISO-Standards unterstützt werden. 
+    Zur visuellen Kontextualisierung und als grafische Schnittstelle dient das Bonsai-Add-on für Blender.
 
     \item \textbf{Demonstration:} \\
-    Die grundlegende Machbarkeit wird durch die Anwendung des Prototyps an einem Beispielprojekt demonstriert. Dies soll zeigen, dass die \gls{ids}-gestützte Anreicherung technisch umsetzbar ist.
+    Die grundlegende Machbarkeit wird durch die Anwendung des Prototyps an einem 
+    realitätsnahen Beispielprojekt demonstriert. Dieser \textbf{Proof of Concept} dient 
+    dem Nachweis, dass der Algorithmus in einer gewohnten Modellierungsumgebung 
+    korrekt auf praxisrelevante Bauteile reagiert.
 
     \item \textbf{Evaluation:} \\
-    Die Wirksamkeit des Artefakts wird systematisch überprüft, indem der Erfüllungsgrad der in Phase 2 definierten Anforderungen gemessen wird. Die in der Definitionsphase genutzten \gls{ids}-Dateien dienen hierbei als Test-Benchmarks (siehe \ref{subsec:evaluation}).
-    Die für diese Evaluation verwendeten \gls{ifc}-Modelle stammen aus dem realen Hochbau und umfassen komplexere Projekte wie größere Wohn- und Büroanlagen. Das geforderte \glqq Level of Information Need\grqq{} (LOIN) wird dabei primär durch die herangezogenen \gls{ids}-Vorgaben definiert. Ziel ist es, dass die Modelle durch die Anreicherung jene Datenstruktur und Informationsdichte aufweisen, die notwendig sind, um daraus weiterführende Prozesse wie eine Massenermittlung oder Kostenkalkulation abzuleiten. Eine detailliertere Beschreibung der Testdaten erfolgt in Kapitel \ref{subsec:evaluation}.
+    Die Wirksamkeit (\textit{Efficacy}) des Artefakts wird durch einen systematischen 
+    Belastungstest überprüft. Hierfür wird ein synthetisches Referenzmodell genutzt, 
+    welches skriptbasiert automatisiert erstellt wird, um Instanzen sämtlicher relevanter 
+    Subtypen von \texttt{IfcBuildingElement} abzubilden. Dieses Vorgehen stellt die 
+    Objektivität der Testumgebung sicher und schließt menschliche Fehler bei der 
+    Modellerstellung aus. Ziel der Evaluation ist der Nachweis der funktionalen 
+    Vollständigkeit über alle technischen Grenzbereiche des \gls{ifc}4-Schemas hinweg. 
+    Eine detailliertere Erläuterung der Test-Matrix erfolgt in Kapitel~\ref{subsec:evaluation}.
 
     \item \textbf{Kommunikation:} \\
-    Die Ergebnisse der Arbeit werden abschließend dokumentiert und für Fachanwender sowie die wissenschaftliche Gemeinschaft aufbereitet.
+    Die Ergebnisse der Arbeit werden abschließend dokumentiert und für Fachanwender 
+    sowie die wissenschaftliche Gemeinschaft aufbereitet.
 \end{enumerate}
 
 \subsection{Evaluationskonzept (FEDS)}
@@ -47,15 +75,15 @@ Dieses Framework sieht einen vierstufigen Prozess vor um eine geeignete
 Evaluierungsstrategie zu wählen. Dieser wird im Folgenden für den vorliegenden 
 Prototyp angewandt:
 
-\textbf{Schritt 1: Evaluierungsziele definieren} \\
+\textbf{Schritt~1: Evaluierungsziele definieren} \\
 Das primäre Ziel dieser Studie ist die Überprüfung der Wirksamkeit des entwickelten 
 Algorithmus in einem kontrollierten Umfeld \cite{venable2016feds}. 
 Das wesentliche Risiko der Arbeit liegt in der Komplexität hinsichtlich der korrekten 
 \gls{ids}-Interpretation und der anschließenden Manipulation des \gls{ifc}-Modells 
 (technisches Risiko). 
 
-\textbf{Schritt 2: Auswahl der Evaluationsstrategie} \\
-Ausgehend von den in Schritt 1 definierten Heuristiken scheiden drei der vier 
+\textbf{Schritt~2: Auswahl der Evaluationsstrategie} \\
+Ausgehend von den in Schritt~1 definierten Heuristiken scheiden drei der vier 
 möglichen FEDS-Strategien aus: Ein \glqq Quick \& Simple\grqq{}-Ansatz wird der 
 geforderten methodischen Strenge für die \gls{ifc}-Datenmanipulation nicht gerecht. 
 Die Strategie \glqq Human Risk \& Effectiveness\grqq{} scheidet aus, da diese 
@@ -64,47 +92,43 @@ Entwicklungsphase noch nicht auf reale Nutzerakzeptanz und Usability für Endanw
 ist unpassend, da das Tool langfristig sehr wohl gezielt menschliche Arbeitsabläufe 
 in der Praxis verändern soll. 
 Folglich wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. 
-Der Fokus liegt bei dieser auf einer intensiven, künstlichen Evaluation unter 
+Der Fokus liegt bei dieser auf einer Evaluation unter 
 kontrollierten Bedingungen, um nachzuweisen, dass die benötigten Verbesserungen der 
 Datenstruktur rein auf das technische Artefakt selbst zurückzuführen sind.
 
-\textbf{Schritt 3: Bestimmung der zu evaluierenden Eigenschaften} \\
-Die wesentliche Evaluationsmetrik stützt sich dementsprechend auf die konzeptionelle 
-Übersetzungsfähigkeit. Ein Testfall gilt als erfolgreich, sofern nachgewiesen wird, 
-dass jede Spezifikation aus der IDS auf jede Art der im Ifc gegebenen Elementtypen
-angewandt werden kann. Somit wird sichergestellt, dass selbst bei unzureichenden Startbedingungen oder 
-verfälschten Startbedingungen letztendlich jedes Element in einen zufriedenstellenden 
-Zustand überführt werden kann ohne dass die tatsächliche Bautechnische Korrektheit 
-der Anreicherung im Rahmen dieser Arbeit eine Rolle spielt. 
+\textbf{Schritt~3: Bestimmung der zu evaluierenden Eigenschaften} \\
+Die wesentliche Evaluationsmetrik stützt sich auf die universelle Übersetzungsfähigkeit 
+und funktionale Robustheit des Artefakts über die gesamte Bandbreite des \gls{ifc}-Schemas. 
+Es gilt nachzuweisen, dass jede im \gls{ids}-Standard spezifizierbare Anforderung (Facette) 
+auf jeden vorkommenden Subtyp des \texttt{IfcBuildingElement} (z.\,B. \texttt{IfcWall}, 
+\texttt{IfcBeam}) übertragen werden kann. Die zu evaluierenden Eigenschaften umfassen dabei 
+sechs Kategorien: \textit{Entities}, \textit{Attributes} (z.\,B. Name, Tag), 
+\textit{Properties} (Property Sets), \textit{Classifications}, \textit{Materials} 
+sowie \textit{PartOf}-Relationen (z.\,B. \texttt{IFCRELAGGREGATES}, 
+\texttt{IFCRELCONTAINEDINSPATIALSTRUCTURE}). Somit wird sichergestellt, dass das Artefakt 
+unabhängig von der spezifischen Anforderungstiefe jedes Element in einen 
+anforderungskonformen Zustand überführen kann.
 
-\textbf{Schritt 4: Design der Evaluationsphase} \\
-Die konkrete Umsetzung der so definierten Evaluation erfolgt im Rahmen einer 
-Delta-Analyse. Dabei dienen die in Phase 2 definierten \gls{ids}-Spezifikationen als 
-Kontrollbasis, welche gegen die identifizierten \gls{ifc}-Praxismodelle getestet 
-werden. Um die funktionale Umsetzung ZU validieren, wird der bereits in Kapitel 
-\ref{subsec:ifcopenshell} vorgestellte IfcTester im Rahmen des Bonsai-Ökosystems 
-eingesetzt. 
-In jedem der betrachteten \gls{ifc}-Modelle wird je ein 
-Die Evaluation durchläuft eine kontrollierte Episode, an deren Ende der 
-manipulierte \gls{ifc}-Zustand vom Validierungstool fehlerfrei als \gls{ids}-konform 
-ausgewiesen werden muss.
+\textbf{Schritt~4: Design der Evaluationsphase} \\
+Die Evaluation wird als kontrolliertes Experiment durchgeführt. Das Versuchsdesign 
+sieht vor, dass nach dem initialen Parsing der \gls{ids} jede einzelne Spezifikation 
+sequentiell auf jedes im synthetischen Modell befindliche Element (jeweils ein 
+Exemplar pro \texttt{IfcBuildingElement}-Typ) angewandt wird.
 
+Der Prozessschritt umfasst dabei einen iterativen Zyklus:
 
-%%%
+\begin{enumerate}
+    \item \textbf{Prüfung der Ausgangs-Compliance:} Initiale Validierung des Elements mittels \gls{ifc}Tester zur Feststellung des IST-Zustands.
+    \item \textbf{Anwendung der Anreicherungslogik:} Ausführung des Prototyps zur automatisierten Ergänzung fehlender Daten auf Basis der \gls{ids}-Vorgaben.
+    \item \textbf{Re-Validierung:} Erneute Prüfung durch den \gls{ifc}Tester zur Verifizierung der korrekten Umsetzung aller Facetten (SOLL-Zustand).
+    \item \textbf{Zustands-Reset:} Rücksetzung des Modells auf den Ausgangszustand, um eine isolierte Betrachtung des nächsten Testfalls zu garantieren.
+\end{enumerate}
 
-%Die Evaluation wird nach dem „Framework for Evaluation in Design Science“ (FEDS) gestaltet. Um den Fokus auf die technische Machbarkeit des Prototyps zu legen, wird die Strategie \glqq Technical Risk \& Efficacy\grqq{} gewählt. Diese Strategie ist darauf ausgerichtet, die technische Wirksamkeit eines Artefakts unter kontrollierten Bedingungen nachzuweisen, um Designentscheidungen zu validieren \cite{venable2016feds}. 
-
-%Das Hauptrisiko der vorliegenden Arbeit liegt in der Komplexität der \gls{ids}-Interpretation sowie der algorithmisch korrekten Manipulation des \gls{ifc}-Modells. Die Evaluation prüft daher die \gls{ids}-Konformität als primäres Erfolgskriterium. Die zur Anforderungsdefinition genutzten \gls{ids}-Dateien werden nun als Validierungsgrundlage gegen drei \gls{ifc}-Modelle aus der Baupraxis getestet.
-
-%Um eine objektive Prüfung der in Phase 2 festgelegten Ziele zu gewährleisten, wird der bereits in Kapitel \ref{subsec:ifcopenshell} vorgestellte IfcTester als Validierungswerkzeug genutzt. Dabei wird die \gls{ids}-Konformität der Modelle im Rahmen einer Delta-Analyse gegenübergestellt, welche den Zustand der \gls{ifc}-Modelle vor und nach der Bearbeitung vergleicht. Ein Testfall gilt als erfolgreich abgeschlossen, wenn der Prototyp die spezifizierten \gls{ids}-Anforderungen korrekt in die \gls{ifc}-Datei überführt hat und diese im anschließenden Validierungslauf des IfcTesters fehlerfrei als konform bestätigt werden.
-
-% TODO: Was noch fehlt: Begründe kurz, warum die anderen FEDS-Strategien (z. B. Human Risk & Effectiveness) ausscheiden. Argument: Es geht in deiner Bachelorarbeit primär um den Nachweis der technischen Machbarkeit der IDS-IFC-Übersetzung und (noch) nicht darum, wie gut ein Endanwender (z. B. ein Kalkulant) das Tool in seinem Arbeitsalltag bedienen kann (Usability).
-
-% TODO: Metriken definieren: Wie genau wird gemessen? Ist ein Testfall nur bestanden ("Pass") oder nicht bestanden ("Fail")? Oder misst du auch Dinge wie Performance (Dauer des Skripts) oder die Anzahl der erfolgreich angereicherten Attribute in Prozent?
-
-% **Spezifikationen der IDS etwas zweckentfremdet, eher als Pool möglicher Informationsträgern, wobei nicht alle davon in jedem Projekt/jeder Auswertung nötig werden.**
-% **Im Rahmen der Evaluierung wird also nachgewiesen dass jede Spezifikation aus der IDS auf jedes gegebene Element der IFC angewandt werden könnte. Somit wird sichergestellt, dass selbst bei unzureichenden Startbedingungen oder verfälschten Startbedingungen letztendlich jedes Element in einen zufriedenstellenden Zustand überführt werden kann.**
-% 1. Feststellen aller Ausprägungen eines IfcElement allen betrachteten Modellen (z.b. IfcWall, IfcBeam, IfcSlab...)
-% 2. Jede Spezifikation des IDS einmal auf ein Exemplar jedes IfcElement-Types anwenden
-% 3. Learning: wenn aus jede Spezifikation auf jedes Element angewandt werden kann, dann gilt die Annahme, dass jede gewünschte Anreicherungen/Modifikation des Modells möglich ist.
-% 4. Dies wird bewiesen durch den IfcTester. Nach jeder Zuweisung einer Spezifikation auf ein Element wird der IfcTester ausgeführt. Ist der Tester für dieses Element und diese Spezifikation zufridengestellt gibt diese Betrachtung als erfolgreich. Dargestellt wird anschließend eine Matrix mit Zeile IfcElement Typen und Spalte Spezifikationen
+Ein Durchlauf gilt als erfolgreich, wenn nach der Anreicherung alle Facetten der 
+Spezifikation (Entity, Attribute, Psets, Klassifizierungen etc.) korrekt im Modell 
+abgebildet sind. Der \gls{ifc}Tester fungiert hierbei 
+als unabhängige Instanz, da er als offizieller buildingSMART-Standard 
+zur Validierung von \gls{ids}-Anforderungen anerkannt ist und somit eine objektive 
+Prüfung der vom Prototyp vorgenommenen Modifikationen ermöglicht. Die Ergebnisse 
+werden in einer Vollständigkeitsmatrix visualisiert, welche die erfolgreiche 
+Abdeckung des gesamten Funktionsumfangs belegt.
