@@ -35,7 +35,7 @@ Für die Durchführung wird ein Vorgehensmodell genutzt, welches sechs Prozessph
         \item \textbf{Parsing:} Einlesen der \gls{ids}-XML-Struktur, um Anforderungen und deren Ausprägungen zu extrahieren.
         \item \textbf{Selektion:} Bestimmung der Ziel-Elemente.
         \item \textbf{Abgleich:} Systematische Prüfung der vorhandenen Modell-Datenstruktur auf fehlende oder abweichende Anforderungen im Vergleich zum \gls{ids}-Soll-Zustand.
-        \item \textbf{Transformation:} Erzeugung fehlender Datenstrukturen sowie die Zuweisung der \gls{ids}-Werte als Platzhalter.
+        \item \textbf{Transformation:} Erzeugung fehlender Datenstrukturen sowie Zuweisung der \gls{ids}-Werte als Platzhalter. Dies schließt die Entitätstransformation mit ein: Sollte der IST-Typ des Elements (z.\,B. \texttt{IfcBuildingElementProxy}) von der \gls{ids}-Vorgabe abweichen, führt der Prototyp eine Neuklassifizierung unter Wahrung der global eindeutigen Identifikation (\texttt{GlobalId}) und bestehender Relationen durch.
         \item \textbf{Serialisierung:} Speicherung des angereicherten \gls{ifc}-Modells.
     \end{enumerate}
     Der Schritt \textbf{b) Selektion} variiert kontextabhängig: Während in der Praxisanwendung eine benutzerdefinierte Auswahl der zu bearbeitenden Elemente erfolgt (siehe Phase~4), wird in der Evaluationsumgebung eine systematische Paarkombination aus allen Spezifikationen und Elementtypen vollzogen (siehe Phase~5). 
@@ -110,13 +110,11 @@ unabhängig von der spezifischen Anforderungstiefe jedes Element in einen
 anforderungskonformen Zustand überführen kann.
 
 \textbf{Schritt~4: Design der Evaluationsphase} \\
-Die Evaluation wird als kontrolliertes Experiment durchgeführt. Das Versuchsdesign 
-sieht vor, dass nach dem initialen Parsing der \gls{ids} jede einzelne Spezifikation 
-sequentiell auf jedes im synthetischen Modell befindliche Element (jeweils ein 
-Exemplar pro \texttt{IfcBuildingElement}-Typ) angewandt wird.
+Die Evaluation wird als kontrolliertes Experiment durchgeführt. Das Versuchsdesign sieht vor, dass nach dem initialen Parsing der \gls{ids} jede einzelne Spezifikation sequentiell auf jedes im synthetischen Modell befindliche Element angewandt wird. 
+
+Das Versuchsdesign zielt auf den Nachweis der Zielzustand-Konformität ab. Es wird evaluiert, ob der Algorithmus in der Lage ist, beliebige Input-Instanzen in einen spezifikationsgerechten Zustand zu überführen
 
 Der Prozessschritt umfasst dabei einen iterativen Zyklus:
-
 \begin{enumerate}
     \item \textbf{Prüfung der Ausgangs-Compliance:} Initiale Validierung des Elements mittels \gls{ifc}Tester zur Feststellung des IST-Zustands.
     \item \textbf{Anwendung der Anreicherungslogik:} Ausführung des Prototyps zur automatisierten Ergänzung fehlender Daten auf Basis der \gls{ids}-Vorgaben.
@@ -129,6 +127,25 @@ Spezifikation (Entity, Attribute, Psets, Klassifizierungen etc.) korrekt im Mode
 abgebildet sind. Der \gls{ifc}Tester fungiert hierbei 
 als unabhängige Instanz, da er als offizieller buildingSMART-Standard 
 zur Validierung von \gls{ids}-Anforderungen anerkannt ist und somit eine objektive 
-Prüfung der vom Prototyp vorgenommenen Modifikationen ermöglicht. Die Ergebnisse 
-werden in einer Vollständigkeitsmatrix visualisiert, welche die erfolgreiche 
-Abdeckung des gesamten Funktionsumfangs belegt.
+Prüfung der vom Prototyp vorgenommenen Modifikationen ermöglicht.
+Die Ergebnisse werden in einer Matrix visualisiert, deren Aufbau in Tabelle~\ref{tab:eval_matrix_schema} schematisch dargestellt ist. 
+Diese Matrix ermöglicht den Nachweis, dass jede Ziel-Spezifikation unabhängig vom Ausgangstyp des Elements erfolgreich appliziert werden kann.
+
+\begin{table}[ht]
+\centering
+\caption{Schematischer Aufbau der Matrix zur Evaluation der Zielzustand-Konformität.}
+\label{tab:eval_matrix_schema}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l||c|c|c|c|c|c|}
+\hline
+\textbf{Input-Element} & \textbf{Ziel-Spezifikation} & \textbf{Ent.} & \textbf{Attr.} & \textbf{Prop.} & \textbf{Class.} & \textbf{Mat.} & \textbf{Rel.} \\ \hline \hline
+IfcBuildingElementProxy & IfcWall Spec & [ ] & [ ] & [ ] & [ ] & [ ] & [ ] \\ \hline
+IfcBeam                 & IfcWall Spec & [ ] & [ ] & [ ] & [ ] & [ ] & [ ] \\ \hline
+IfcWall                 & IfcWall Spec & [ ] & [ ] & [ ] & [ ] & [ ] & [ ] \\ \hline
+\dots                   & \dots        & \dots & \dots & \dots & \dots & \dots & \dots \\ \hline
+IfcBuildingElementProxy & IfcSlab Spec & [ ] & [ ] & [ ] & [ ] & [ ] & [ ] \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+% 1106 Wörter
