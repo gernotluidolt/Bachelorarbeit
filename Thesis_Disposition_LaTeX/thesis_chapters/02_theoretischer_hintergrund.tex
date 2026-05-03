@@ -10,14 +10,14 @@ Die Definition nach \cite{borrmann2015building} beschreibt \gls{bim} sowohl als 
 \subsubsection{Der Lebenszyklus von Bauwerksdaten}
 Ein zentrales Versprechen von \gls{bim} ist die durchgängige Nutzung der Daten über den gesamten Lebenszyklus eines Bauwerks \cite{ISO19650:2018}. Die Realität in der Bauindustrie ist jedoch oft von einem fragmentierten Prozess geprägt. Besonders an den Phasengrenzen (z. B. Übergang von Entwurfsplanung zur Ausführungsvorbereitung) kommt es häufig zu einem massiven Informationsverlust, dem sogenannten „Information Drop“ \cite{sacks2018bim}.
 
-% TODO: Erläutere hier ggf. genauer, warum der Information Drop in der Angebotsphase (dein Fokus) besonders kritisch ist. Fehlen hier spezifische Daten von den Planern? (Bezug zu Sacks 2018, S. 37)
+Besonders kritisch ist dieser „Information Drop“ in der hier betrachteten Angebotsphase, da Bauunternehmen zu diesem Zeitpunkt kaum Einfluss auf die Modellerstellung durch Dritte (Planer) nehmen können \cite{borrmann2015building}. Modelle von Planern sind zwar oft geometrisch detailliert, verfügen jedoch meist nicht über die baubetriebliche Informationstiefe, die für eine automatisierte Mengenermittlung notwendig wäre. Da die Modellvorgaben unternehmensübergreifend oft nicht vollständig steuerbar sind, muss das Bauunternehmen mit einem Modell arbeiten, dessen Informationsgehalt für interne Kalkulationsprozesse unzureichend ist.
 
 In der hier betrachteten Angebotsphase müssen Auftragnehmer oft Modelle übernehmen, die für die Zwecke der Kalkulation und Arbeitsvorbereitung unzureichend attribuiert sind. Die manuelle Nachpflege dieser Daten ist fehleranfällig und zeitintensiv, was die Motivation für den in dieser Arbeit entwickelten Automatisierungsansatz darstellt.
 
 \subsubsection{Informationsbedarf (LOIN)}
 Um diesen Informationsverlusten entgegenzuwirken, definiert die \textbf{DIN EN 17412-1} den „Level of Information Need“ (LOIN). Dieser Standard legt fest, dass Informationen nicht „auf Vorrat“, sondern gezielt für einen bestimmten Zweck (Use Case) und zu einem definierten Zeitpunkt bereitgestellt werden müssen \cite{abualdenien2022levels}. 
 
-% TODO: Welche spezifischen LOIN-Kategorien (Geometrie, Alphanumerik, Dokumentation) sind für deinen Algorithmus am wichtigsten? Hier könnte eine detailliertere Aufschlüsselung der DIN EN 17412-1 folgen.
+Für den in dieser Arbeit entwickelten Algorithmus steht vor allem die \textbf{alphanumerische Informationstiefe} im Fokus. Da nachfolgende Gewerke spezifische semantische Kriterien benötigen, um auf Modellen anderer Disziplinen aufzubauen, ist ein gezieltes „Nachrüsten“ (Retrofitting) von Parametern notwendig \cite{abualdenien2022levels}. Der Algorithmus adressiert somit den Bedarf an strukturierten, nicht-geometrischen Daten, die für die Kalkulation essenziell sind.
 
 Die theoretische Begründung für die in dieser Arbeit behandelte Modellanreicherung liegt somit in der Diskrepanz zwischen dem vorhandenen Informationsstand aus der Planungsphase und dem für die Kalkulation notwendigen LOIN.
 
@@ -68,7 +68,7 @@ Die für diese Arbeit relevanten physischen Bauelemente folgen einer klaren Hier
 \end{center}
 Durch diese Vererbung erbt beispielsweise eine \texttt{IfcWall} alle Eigenschaften ihrer Superklassen. 
 
-% TODO: Warum ist diese Vererbung für deinen Algorithmus wichtig? Nutzt du sie, um Anforderungen generisch auf alle "IfcBuildingElements" anzuwenden, anstatt sie für jede Subklasse einzeln zu definieren?
+Die Vererbungshierarchie ist für den Anreicherungs-Algorithmus von zentraler Bedeutung, da sie es ermöglicht, Informationsanforderungen generisch auf höheren Ebenen (z. B. für alle \texttt{IfcBuildingElement}) zu definieren, anstatt diese für jede spezifische Subklasse redundant festzulegen. Dies erhöht die Robustheit und Skalierbarkeit der automatisierten Datenprüfung und -ergänzung.
 
 \subsubsection{Datentypen \& Repräsentation}
 IFC wurde ursprünglich in der Modellierungssprache \textbf{EXPRESS} (ISO 10303-11) definiert. Während die klassischen \texttt{.ifc}-Dateien auf dem STEP-Format basieren, gewinnt die XML-Repräsentation (\texttt{.ifcXML}) zunehmend an Bedeutung, da sie die Integration in moderne Webumgebungen und die maschinelle Lesbarkeit (wie bei IDS) erleichtert.
@@ -81,7 +81,7 @@ Die technische Basis für die Modellanreicherung bildet die Unterscheidung zwisc
 \end{itemize}
 
 \subsubsection{Quantity Sets}
-Während Property Sets qualitative Informationen liefern, dienen \texttt{IfcQuantitySets} der Mengenermittlung. In der Praxis zeigt sich hier jedoch oft eine Diskrepanz zu nationalen Kalkulationsstandards wie dem österreichischen Leistungsbuch Hochbau (LBH) oder der ÖNORM B 2114. Da die Standard-Mengen (z. B. \textit{NetVolume}) oft nicht die komplexen Messregeln der Bauverträge abbilden, ist eine gezielte Anreicherung mit benutzerdefinierten Mengenfeldern oft unumgänglich \cite{sacks2018bim}.
+Während Property Sets qualitative Informationen liefern, dienen \texttt{IfcQuantitySets} der Mengenermittlung. In der Praxis zeigt sich hier jedoch oft eine Diskrepanz zu nationalen Kalkulationsstandards wie dem österreichischen Leistungsbuch Hochbau (LBH) oder der ÖNORM B 2114. Diese Diskrepanz entsteht vor allem dadurch, dass traditionelle Rechenregeln der Bauabrechnung (z. B. nach ÖNORM B 2114 oder LBH) auf manuellen Arbeitsweisen basieren, bei denen Öffnungen bis zu einer bestimmten Größe übermessen werden. Während BIM-Modelle Bauteile meist geometrisch korrekt („Netto“) abbilden, erfordert die Kalkulation oft „Abrechnungsmaße“, die über die reine geometrische Repräsentation hinausgehen \cite{borrmann2015building}. Eine Erweiterung der Datenstrukturen ist daher unumgänglich, um diese baubetrieblichen Logiken im digitalen Modell abzubilden.
 
 \subsection{Information Delivery Specification (IDS)}
 \label{subsec:ids}
@@ -126,3 +126,5 @@ Diese Kombination ermöglicht:
 
 \subsubsection{IfcTester}
 Das Modul „IfcTester“ ist Teil des IfcOpenShell-Ökosystems und dient als Validierungswerkzeug für \gls{ids}-Spezifikationen. Es liest eine IDS-Datei ein, prüft das verknüpfte IFC-Modell auf Konformität und generiert detaillierte Berichte über fehlende oder fehlerhafte Daten. In der vorliegenden Arbeit wird der IfcTester genutzt, um die „Informationslücken“ im Modell zu identifizieren, die anschließend durch den Algorithmus geschlossen werden sollen.
+
+Zusammenfassend bilden die erläuterten Grundlagen des OpenBIM-Ökosystems, insbesondere die Struktur des \gls{ifc}-Schemas und die Logik der \gls{ids}, den notwendigen Rahmen für die technische Lösung des beschriebenen Informationsverlusts. Während dieses Kapitel die theoretischen und softwareseitigen Werkzeuge definiert hat, beschreibt das folgende Kapitel~\ref{sec:methodology} die wissenschaftliche Methodik, mit der auf dieser Basis ein systematischer Anreicherungs-Algorithmus entwickelt und evaluiert wird.
